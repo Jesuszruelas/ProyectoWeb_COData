@@ -1,0 +1,151 @@
+/* reportes.css */
+:root {
+  --cafe-suave: #a67c52;
+  --amarillo-pastel: #f9e4b7;
+  --marron-oscuro: #5c3d2e;
+  --blanco-suave: #fefaf3;
+  --texto: #3b2f2f;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--blanco-suave);
+  color: var(--texto);
+  margin: 0;
+  padding: 0;
+}
+
+.report-header,
+.report-footer {
+  background-color: var(--cafe-suave);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.report-container {
+  padding: 2rem;
+  display: grid;
+  gap: 2rem;
+}
+.report-descripcion {
+  background-color: var(--amarillo-pastel);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.report-descripcion h2 {
+  margin-bottom: 0.5rem;
+}
+
+.report-descripcion textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--cafe-suave);
+  border-radius: 5px;
+  font-family: 'Segoe UI', sans-serif;
+  resize: vertical;
+  background-color: var(--blanco-suave);
+  color: var(--texto);
+}
+
+
+.report-filtro {
+  background-color: var(--amarillo-pastel);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.report-filtro h2 {
+  margin-bottom: 1rem;
+}
+
+.report-filtro form {
+  display: grid;
+  gap: 1rem;
+}
+
+.report-filtro label {
+  font-weight: bold;
+}
+
+.report-filtro input,
+.report-filtro select,
+.report-filtro button {
+  padding: 0.5rem;
+  border: 1px solid var(--cafe-suave);
+  border-radius: 5px;
+}
+
+.report-filtro button {
+  background-color: var(--marron-oscuro);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.report-filtro button:hover {
+  background-color: var(--cafe-suave);
+}
+
+.report-tabla h2 {
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  border: 1px solid var(--cafe-suave);
+  text-align: left;
+}
+
+thead {
+  background-color: var(--amarillo-pastel);
+}
+
+@media (max-width: 768px) {
+  .report-container {
+    padding: 1rem;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    background-color: var(--amarillo-pastel);
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  td {
+    padding-left: 50%;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 1rem;
+    font-weight: bold;
+  }
+}

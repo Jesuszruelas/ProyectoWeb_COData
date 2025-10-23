@@ -32,5 +32,3 @@ El proyecto COData proporciona una interfaz para que los usuarios reporten probl
 * **Autenticación de usuario:** Los usuarios pueden iniciar sesión como usuario normal o administrador.
 * **Gestión de perfiles:** Los usuarios pueden ver y gestionar sus perfiles.
 * **Gestión de informes:** Los usuarios pueden enviar y hacer seguimiento de informes, incluyendo la adición de evidencia.
-
-## Estructura del proyecto

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COData - Reportes</title>
+  <link rel="stylesheet" href="Reporte.css" />
+</head>
+<body>
+  <header class="report-header">
+    <h1>Reportes COData</h1>
+  </header>
+
+  <main class="report-container">
+    <section class="report-filtro">
+      <h2>Filtrar Reportes</h2>
+      <form>
+        <label for="modulo">Módulo:</label>
+        <select id="modulo" name="modulo">
+          <option value="Sp">Dirección de Obras y Servicios Públicos</option>
+          <option value="SSP">Secretaría de Seguridad Pública</option>
+          <option value="CAJ">Coordinación de Asuntos Jurídicos</option>
+          <option value="SA">Secretaría del Ayuntamiento</option>
+        </select>
+        <section class="report-descripcion">
+        <h2>Descripción del Reporte</h2>
+        <textarea id="descripcion" name="descripcion" rows="5" placeholder="Escribe aquí el propósito del reporte, observaciones o contexto..."></textarea>
+        </section>
+
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" />
+
+        <button type="submit">Generar</button>
+      </form>
+    </section>
+
+    <section class="report-tabla">
+      <h2>Resultados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Módulo</th>
+            <th>Usuario</th>
+            <th>Acción</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>..</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="report-footer">
+    <p>&copy; 2025 COData. </p>
+  </footer>
+</body>
+</html>

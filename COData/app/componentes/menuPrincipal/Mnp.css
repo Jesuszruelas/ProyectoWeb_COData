@@ -1,0 +1,100 @@
+
+:root {
+  --cafe-suave: #a67c52;
+  --amarillo-pastel: #f9e4b7;
+  --marron-oscuro: #5c3d2e;
+  --blanco-suave: #fefaf3;
+  --texto: #3b2f2f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--blanco-suave);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.main-header {
+  background-color: var(--cafe-suave);
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  
+
+}
+
+.main-header h1 {
+  font-size: 1.8rem;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+  color: var(--amarillo-pastel);
+}
+
+.hero-section {
+  background-color: var(--amarillo-pastel);
+  padding: 19rem 2rem;
+  text-align: center;
+}
+
+.hero-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--marron-oscuro);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+  background-color: var(--cafe-suave);
+}
+
+.main-footer {
+  background-color: var(--cafe-suave);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
