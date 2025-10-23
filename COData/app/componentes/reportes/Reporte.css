@@ -1,151 +1,520 @@
-/* reportes.css */
 :root {
-  --cafe-suave: #a67c52;
-  --amarillo-pastel: #f9e4b7;
-  --marron-oscuro: #5c3d2e;
-  --blanco-suave: #fefaf3;
-  --texto: #3b2f2f;
-}
+            --color-primary: #3b82f6; /* Azul Principal: Botones, enlaces */
+            --color-primary-dark: #2563eb; /* Azul Secundario: Hover */
+            --color-success: #16a34a; /* Verde: Admin, Éxito, Completado */
+            --color-warning: #eab308; /* Amarillo: Alerta, Pendiente */
+            --color-danger: #dc2626; /* Rojo: Error, Emergencia */
+            --color-background: #f3f4f6; /* Gris Claro: Fondo de la app */
+            --color-text-primary: #1f2937; /* Texto principal (más oscuro) */
+            --color-text-secondary: #4b5563; /* Gris Oscuro: Textos secundarios, títulos */
+            --color-white: #ffffff;
+            --color-grey-light: #e5e7eb; /* Bordes, divisores */
+            --color-header-dark: #8a2a43; /* Color vino/oscuro del header (tomado de mockups) */
+        }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: var(--blanco-suave);
-  color: var(--texto);
-  margin: 0;
-  padding: 0;
-}
+        /* ------------------------- */
+        /* 2. Estilos Globales
+        /* ------------------------- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            margin: 0;
+            padding: 0;
+            /* Añadimos padding-bottom para dejar espacio para la barra de navegación */
+            padding-bottom: 80px;
+        }
 
-.report-header,
-.report-footer {
-  background-color: var(--cafe-suave);
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-.report-container {
-  padding: 2rem;
-  display: grid;
-  gap: 2rem;
-}
-.report-descripcion {
-  background-color: var(--amarillo-pastel);
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-top: 1rem;
-}
+        /* ------------------------- */
+        /* 3. Componentes Reutilizables
+        /* ------------------------- */
 
-.report-descripcion h2 {
-  margin-bottom: 0.5rem;
-}
+        /* --- Tarjetas (Cards) --- */
+        .card {
+            background-color: var(--color-white);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
 
-.report-descripcion textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--cafe-suave);
-  border-radius: 5px;
-  font-family: 'Segoe UI', sans-serif;
-  resize: vertical;
-  background-color: var(--blanco-suave);
-  color: var(--texto);
-}
+        /* --- Botones --- */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn i {
+            margin-right: 8px; /* Espacio para íconos dentro de botones */
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+        }
+
+        .btn-success {
+            background-color: var(--color-success);
+            color: var(--color-white);
+        }
+
+        .btn-danger {
+            background-color: var(--color-danger);
+            color: var(--color-white);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-grey-light);
+            color: var(--color-text-primary);
+        }
+
+        /* --- Formularios e Inputs --- */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+        }
+
+        /* --- Títulos de Pantalla --- */
+        .screen-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text-secondary);
+            margin: 16px;
+        }
+
+        /* ------------------------- */
+        /* 4. Estilos de Pantalla Específicos
+        /* ------------------------- */
+
+        /* --- Pantalla de Login [cite: 23] --- */
+        .login-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 24px;
+            background: var(--color-white);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .login-header img {
+            width: 60px; /* Asumido del mockup */
+            margin-bottom: 8px;
+        }
+
+        .login-header h1 {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        .user-type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .user-type-option {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+        }
+
+        .user-type-option.active {
+            border-color: var(--color-primary);
+            background-color: #eff6ff; /* Azul muy claro */
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .form-options a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .form-divider {
+            text-align: center;
+            color: var(--color-text-secondary);
+            margin: 16px 0;
+            font-size: 14px;
+        }
+
+        /* --- Layout Principal (Header y Navegación) --- */
+        .app-header {
+            background-color: var(--color-header-dark);
+            color: var(--color-white);
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .app-header .title {
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .app-header .admin-tag {
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-white);
+            border-top: 1px solid var(--color-grey-light);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-item.active {
+            color: var(--color-primary);
+        }
+
+        .nav-item i {
+            font-size: 22px; /* Tamaño del ícono */
+            margin-bottom: 4px;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -3px;
+            right: -8px; /* Ajustar posición */
+            background-color: var(--color-danger);
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* --- Pantalla de Seguimiento [cite: 24, 25] --- */
+        .report-card {
+            padding: 16px;
+            border-left: 5px solid; /* El color se definirá por estado */
+            margin: 16px; /* Ajuste para que no pegue a bordes */
+            position: relative; /* Añadido para posicionar el icono de chevron */
+        }
+
+        /* Estados de Reporte */
+        .report-card.status-critical {
+            border-left-color: var(--color-danger);
+        }
+        .report-card.status-pending {
+            border-left-color: var(--color-warning);
+        }
+        .report-card.status-completed {
+            border-left-color: var(--color-success);
+        }
+        .report-card.status-in-process {
+            border-left-color: var(--color-primary);
+        }
+
+        .report-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .report-id {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        .report-status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-danger {
+            background-color: var(--color-danger);
+        }
+        .dot-warning {
+            background-color: var(--color-warning);
+        }
+        .dot-success {
+            background-color: var(--color-success);
+        }
+
+        .report-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+            /* Dejar espacio para el chevron en tarjetas colapsadas */
+            padding-right: 30px; 
+        }
+
+        .report-meta {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .report-meta i {
+            width: 14px; /* Ancho fijo para alinear iconos */
+            text-align: center;
+        }
+
+        .report-status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--color-primary);
+            background-color: #dbeafe; /* Azul claro */
+            /* Estado para "En Proceso" */
+        }
+        
+        /* TODO: Añadir estilos para otros estados si es necesario */
+        /*
+        .report-status-badge.status-pending { ... }
+        .report-status-badge.status-completed { ... }
+        */
 
 
-.report-filtro {
-  background-color: var(--amarillo-pastel);
-  padding: 1.5rem;
-  border-radius: 8px;
-}
+        .report-details {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--color-grey-light);
+            font-size: 14px;
+            line-height: 1.5;
+        }
 
-.report-filtro h2 {
-  margin-bottom: 1rem;
-}
+        .report-details p {
+            margin: 8px 0;
+            display: flex; /* Para alinear icono de ubicación */
+            align-items: center;
+        }
+        
+        .report-details p i {
+            margin-right: 6px;
+            color: var(--color-text-secondary);
+        }
 
-.report-filtro form {
-  display: grid;
-  gap: 1rem;
-}
 
-.report-filtro label {
-  font-weight: bold;
-}
+        .report-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        
+        /* Estilo para el icono de chevron en tarjetas colapsadas */
+        .report-card-toggle-icon {
+            position: absolute;
+            right: 20px;
+            top: 40%;
+            transform: translateY(-50%); /* Centrar verticalmente */
+            color: var(--color-text-secondary);
+            font-size: 20px; /* Tamaño del icono */
+        }
 
-.report-filtro input,
-.report-filtro select,
-.report-filtro button {
-  padding: 0.5rem;
-  border: 1px solid var(--cafe-suave);
-  border-radius: 5px;
-}
 
-.report-filtro button {
-  background-color: var(--marron-oscuro);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
+        /* --- Panel de Control [cite: 23] --- */
+        .dashboard-card {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-left: 6px solid;
+            margin: 16px;
+        }
 
-.report-filtro button:hover {
-  background-color: var(--cafe-suave);
-}
+        .dashboard-card i {
+            font-size: 32px;
+            margin-right: 16px;
+        }
 
-.report-tabla h2 {
-  margin-bottom: 1rem;
-}
+        .dashboard-card .info {
+            flex-grow: 1;
+        }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-}
+        .dashboard-card .count {
+            font-size: 36px;
+            font-weight: 700;
+        }
 
-th,
-td {
-  padding: 0.75rem;
-  border: 1px solid var(--cafe-suave);
-  text-align: left;
-}
+        .dashboard-card .label {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+        }
 
-thead {
-  background-color: var(--amarillo-pastel);
-}
+        /* Colores del Dashboard */
+        .dashboard-total {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        .dashboard-pending {
+            border-color: var(--color-warning);
+            color: var(--color-warning);
+        }
+        .dashboard-in-process {
+            border-color: #60a5fa; /* Azul más claro */
+            color: #60a5fa;
+        }
+        .dashboard-completed {
+            border-color: var(--color-success);
+            color: var(--color-success);
+        }
 
-@media (max-width: 768px) {
-  .report-container {
-    padding: 1rem;
-  }
+        /* --- Pantalla de Perfil/Configuración [cite: 26] --- */
+        .profile-header {
+            text-align: center;
+            padding: 24px 16px;
+            background-color: var(--color-white);
+            border-radius: 0 0 12px 12px;
+            margin-bottom: 16px;
+        }
 
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
-  }
+        .profile-icon {
+            font-size: 64px;
+            color: var(--color-success); /* Icono verde de admin */
+        }
 
-  tr {
-    margin-bottom: 1rem;
-    background-color: var(--amarillo-pastel);
-    padding: 1rem;
-    border-radius: 8px;
-  }
+        .profile-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 8px;
+            color: var(--color-text-primary);
+        }
 
-  th {
-    font-weight: bold;
-  }
+        .profile-email {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
 
-  td {
-    padding-left: 50%;
-    position: relative;
-  }
+        .settings-group {
+            margin: 16px;
+        }
 
-  td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 45%;
-    padding-left: 1rem;
-    font-weight: bold;
-  }
-}
+        .settings-group h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            padding-left: 4px;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--color-grey-light);
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-item-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+        }
+
+        .setting-item-label i {
+            color: var(--color-text-secondary);
+            width: 20px;
+            text-align: center;
+        }
+
+        .setting-item .logout-button {
+            color: var(--color-danger);
+            font-weight: 600;
+        }
+
+        /* --- Mapa de Reportes [cite: 25] --- */
+        .map-container {
+            height: 400px; /* Altura de ejemplo */
+            width: calc(100% - 32px); /* Ancho completo menos márgenes */
+            margin: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--color-grey-light); /* Placeholder */
+        }
+
+        /* Estilo para el mapa real (ej. Leaflet) */
+        #report-map {
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Contenedor principal para pantallas */
+        .main-content {
+            padding: 0; /* Quitamos padding general */
+        }
