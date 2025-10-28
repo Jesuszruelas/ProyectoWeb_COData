@@ -1,84 +1,111 @@
-<div class="main-content">
-  <h2 class="screen-title">Seguimiento</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COData - Mapa de Reportes</title>
+    
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="mapa.css">
+    
+    <!-- Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
 
-  <div class="filter-container" style="padding: 0 16px; margin-bottom: 16px">
-    <p style="color: var(--color-text-secondary); font-size: 14px">
-      3 reportes encontrados
-    </p>
-  </div>
+    <!-- Contenedor del contenido principal -->
+    <div class="main-content-wrapper">
 
-  <div class="card report-card status-critical">
-    <div class="report-card-header">
-      <span class="report-id">RPT-001</span>
-      <i class="report-status-dot dot-danger"></i>
-    </div>
-    <h3 class="report-title">Fuga de agua en Av. Principal</h3>
+        <!-- Encabezado del contenido (Igual que en las otras páginas) -->
+        <header class="main-header">
+            <!-- Barra de Búsqueda -->
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar en el mapa...">
+            </div>
+            <a href="#" class="btn btn-admin">
+                <i class="fa-solid fa-user-shield"></i>
+                Admin
+            </a>
+        </header>
 
-    <div class="report-meta">
-      <span><i class="fa-regular fa-calendar"></i> 25/06/24</span>
-      <span><i class="fa-regular fa-user"></i> María González</span>
-    </div>
-    <span class="report-status-badge">En Proceso</span>
+        <!-- Contenido principal de la pantalla -->
+        <main class="main-content">
+            
+            <h2 class="screen-title">Mapa de Reportes</h2>
+            
+            <!-- Filtros para el mapa (estilo pill) -->
+            <div class="map-filters">
+                <button class="pill active">Todos <span class="count">7</span></button>
+                <button class="pill filter-security">Seguridad <span class="count">1</span></button>
+                <button class="pill filter-transit">Vialidad <span class="count">1</span></button>
+                <button class="pill filter-services">Servicios <span class="count">1</span></button>
+                <button class="pill filter-emergency">Emergencias <span class="count">1</span></button>
+                <button class="pill filter-infra">Infraestructura <span class="count">2</span></button>
+                <button class="pill">Otro <span class="count">1</span></button>
+            </div>
 
-    <div class="report-details">
-      <p>
-        <strong>Descripción:</strong> Fuga considerable en la tubería principal
-        que afecta el suministro de agua potable en toda la zona
-      </p>
-      <p><strong>Categoría:</strong> Agua y Drenaje</p>
-      <p>
-        <strong>Prioridad:</strong>
-        <span style="color: var(--color-danger); font-weight: bold"
-          >Crítica</span
-        >
-      </p>
-      <p><strong>Contacto:</strong> 644-123-4567</p>
-      <p>
-        <strong>Ubicación:</strong>
-        <i class="fa-solid fa-location-dot"></i> Av. Principal #123, Col. Centro
-      </p>
-    </div>
+            <!-- Contenedor del Mapa -->
+            <div class="map-container">
+                
+                <!-- Texto de placeholder -->
+                <div class="placeholder-text">
+                    <i class="fa-solid fa-map-marked-alt"></i>
+                    <p>El mapa interactivo se cargaría aquí</p>
+                </div>
 
-    <div class="report-actions">
-      <a href="#" class="btn btn-primary">Actualizar</a>
-      <a href="#" class="btn btn-secondary">Ver Mapa</a>
-      <a href="#" class="btn btn-danger">Eliminar</a>
-    </div>
-  </div>
+                <!-- Marcadores de ejemplo -->
+                <div class="map-marker marker-security" style="top: 30%; left: 40%;" title="Seguridad: Asalto">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="map-marker marker-transit" style="top: 50%; left: 60%;" title="Vialidad: Semáforo descompuesto">
+                    <i class="fa-solid fa-car"></i>
+                </div>
+                <div class="map-marker marker-infra" style="top: 65%; left: 25%;" title="Infraestructura: Bache">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <div class="map-marker marker-services" style="top: 20%; left: 70%;" title="Servicios: Fuga de agua">
+                    <i class="fa-solid fa-recycle"></i>
+                </div>
 
-  <div class="card report-card status-pending">
-    <div class="report-card-header">
-      <span class="report-id">RPT-002</span>
-      <i class="report-status-dot dot-warning"></i>
-    </div>
-    <h3 class="report-title">Luminarias descompuestas</h3>
+            </div>
 
-    <i
-      class="fa-solid fa-chevron-down"
-      style="
-        position: absolute;
-        right: 20px;
-        top: 40%;
-        color: var(--color-text-secondary);
-      "
-    ></i>
-  </div>
+            <!-- 
+              NAVEGACIÓN RESPONSIVA
+              (Con "Mapa" como activo) 
+            -->
+            <nav class="content-nav">
+                <div class="nav-list">
+                    <a href="reporte.html" class="nav-item">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Principal</span>
+                    </a>
+                    <a href="seguimiento.html" class="nav-item"> 
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Seguimiento</span>
+                    </a>
+                    <a href="registro.html" class="nav-item">
+                        <i class="fa-solid fa-camera"></i>
+                        <span>Foto/Video</span>
+                    </a>
+                    <a href="mapa.html" class="nav-item active"> <!-- "active" está aquí ahora -->
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Mapa</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                        <span>Notificaciones</span>
+                    </a>
+                    <a href="perfil.html" class="nav-item"> <!-- Asumiendo que la de registro/perfil se llama perfil.html -->
+                        <i class="fa-solid fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </div>
+            </nav>
 
-  <div class="card report-card status-completed">
-    <div class="report-card-header">
-      <span class="report-id">RPT-003</span>
-      <i class="report-status-dot dot-success"></i>
-    </div>
-    <h3 class="report-title">Baches reparados exitosamente</h3>
+        </main>
+    </div> <!-- fin .main-content-wrapper -->
 
-    <i
-      class="fa-solid fa-chevron-down"
-      style="
-        position: absolute;
-        right: 20px;
-        top: 40%;
-        color: var(--color-text-secondary);
-      "
-    ></i>
-  </div>
-</div>
+</body>
+</html>

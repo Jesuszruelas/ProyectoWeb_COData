@@ -4,83 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COData - Seguimiento</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <!-- Hoja de estilos -->
     <link rel="stylesheet" href="seguimiento.css">
+    
+    <!-- Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
-<body>  
-<div class="main-content">
-    <h2 class="screen-title">Seguimiento</h2>
+<body>
 
-    <div class="filter-container" style="padding: 0 16px; margin-bottom: 16px">
-        <p style="color: var(--color-text-secondary); font-size: 14px">
-            3 reportes encontrados
-        </p>
-    </div>
+    <!-- Contenedor del contenido principal (Igual que en reporte.html) -->
+    <div class="main-content-wrapper">
 
-    <!--Tarjeta de Reporte 1: Crítico -->
-    <div class="card report-card status-critical">
-        <div class="report-card-header">
-            <span class="report-id">RPT-001</span>
-            <i class="report-status-dot dot-danger"></i>
-        </div>
-        <h3 class="report-title">Fuga de agua en Av. Principal</h3>
+        <!-- Encabezado del contenido (Igual que en reporte.html) -->
+        <header class="main-header">
+            <!-- Barra de Búsqueda -->
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar en reportes...">
+            </div>
+            <a href="#" class="btn btn-admin">
+                <i class="fa-solid fa-user-shield"></i>
+                Admin
+            </a>
+        </header>
 
-        <div class="report-meta">
-            <span><i class="fa-regular fa-calendar"></i> 25/06/24</span>
-            <span><i class="fa-regular fa-user"></i> María González</span>
-        </div>
-        <span class="report-status-badge">En Proceso</span>
+        <!-- Contenido principal de la pantalla -->
+        <main class="main-content">
+            
+            <!-- Contenido específico de Seguimiento -->
+            <h2 class="screen-title">Seguimiento de Reportes</h2>
 
-        <div class="report-details">
-            <p>
-                <strong>Descripción:</strong> Fuga considerable en la tubería principal
-                que afecta el suministro de agua potable en toda la zona
-            </p>
-            <p><strong>Categoría:</strong> Agua y Drenaje</p>
-            <p>
-                <strong>Prioridad:</strong>
-                <span style="color: var(--color-danger); font-weight: bold"
-                >Crítica</span
-                >
-            </p>
-            <p><strong>Contacto:</strong> 644-123-4567</p>
-            <p>
-                <i class="fa-solid fa-location-dot"></i>
-                <strong>Ubicación:</strong>
-                Av. Principal #123, Col. Centro
-            </p>
-        </div>
+            <div class="filter-container">
+                <p>3 reportes encontrados</p>
+            </div>
 
-        <div class="report-actions">
-            <a href="#" class="btn btn-primary">Actualizar</a>
-            <a href="#" class="btn btn-secondary">Ver Mapa</a>
-            <a href="#" class="btn btn-danger">Eliminar</a>
-        </div>
-    </div>
+            <!--Tarjeta de Reporte 1: Crítico -->
+            <div class="card report-card status-critical">
+                <div class="report-card-header">
+                    <span class="report-id">RPT-001</span>
+                    <i class="report-status-dot dot-danger"></i>
+                </div>
+                <h3 class="report-title">Fuga de agua en Av. Principal</h3>
 
-    <!-- Tarjeta de Reporte 2: Pendiente -->
-    <div class="card report-card status-pending">
-        <div class="report-card-header">
-            <span class="report-id">RPT-002</span>
-            <i class="report-status-dot dot-warning"></i>
-        </div>
-        <h3 class="report-title">Luminarias descompuestas</h3>
+                <div class="report-meta">
+                    <span><i class="fa-regular fa-calendar"></i> 25/06/24</span>
+                    <span><i class="fa-regular fa-user"></i> María González</span>
+                </div>
+                <span class="report-status-badge">En Proceso</span>
 
-        <!-- Icono para expandir-->
-        <i class="fa-solid fa-chevron-down report-card-toggle-icon"></i>
-    </div>
+                <div class="report-details">
+                    <p>
+                        <strong>Descripción:</strong> Fuga considerable en la tubería principal
+                        que afecta el suministro de agua potable en toda la zona
+                    </p>
+                    <p><strong>Categoría:</strong> Agua y Drenaje</p>
+                    <p>
+                        <strong>Prioridad:</strong>
+                        <span style="color: var(--color-rojo); font-weight: bold"
+                        >Crítica</span
+                        >
+                    </p>
+                    <p><strong>Contacto:</strong> 644-123-4567</p>
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <strong>Ubicación:</strong>
+                        Av. Principal #123, Col. Centro
+                    </p>
+                </div>
 
-    <!-- Tarjeta de Reporte 3: Completado-->
-    <div class="card report-card status-completed">
-        <div class="report-card-header">
-            <span class="report-id">RPT-003</span>
-            <i class="report-status-dot dot-success"></i>
-        </div>
-        <h3 class="report-title">Baches reparados exitosamente</h3>
+                <div class="report-actions">
+                    <a href="#" class="btn btn-primary">Actualizar</a>
+                    <a href="#" class="btn btn-secondary">Ver Mapa</a>
+                    <a href="#" class="btn btn-danger">Eliminar</a>
+                </div>
+            </div>
 
-        <!-- Icono para expandir-->
-        <i class="fa-solid fa-chevron-down report-card-toggle-icon"></i>
-    </div>
+            <!-- Tarjeta de Reporte 2: Pendiente -->
+            <div class="card report-card status-pending">
+                <div class="report-card-header">
+                    <span class="report-id">RPT-002</span>
+                    <i class="report-status-dot dot-warning"></i>
+                </div>
+                <h3 class="report-title">Luminarias descompuestas</h3>
+
+                <!-- Icono para expandir-->
+                <i class="fa-solid fa-chevron-down report-card-toggle-icon"></i>
+            </div>
+
+            <!-- Tarjeta de Reporte 3: Completado-->
+            <div class="card report-card status-completed">
+                <div class="report-card-header">
+                    <span class="report-id">RPT-003</span>
+                    <i class="report-status-dot dot-success"></i>
+                </div>
+                <h3 class="report-title">Baches reparados exitosamente</h3>
+
+                <!-- Icono para expandir-->
+                <i class="fa-solid fa-chevron-down report-card-toggle-icon"></i>
+            </div>
+            <!-- Fin de contenido específico -->
+
+
+            <!-- 
+              NAVEGACIÓN RESPONSIVA
+              (Exactamente igual que en reporte.html, pero con "active" cambiado) 
+            -->
+            <nav class="content-nav">
+                <div class="nav-list">
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Principal</span>
+                    </a>
+                    <a href="#" class="nav-item active"> <!-- "active" está aquí ahora -->
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Seguimiento</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-camera"></i>
+                        <span>Foto/Video</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Mapa</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                        <span>Notificaciones</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </div>
+            </nav>
+
+        </main>
+    </div> <!-- fin .main-content-wrapper -->
+
 </body>
 </html>
-

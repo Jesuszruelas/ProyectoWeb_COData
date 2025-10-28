@@ -1,31 +1,139 @@
     <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>COData</title>
-    </head>
-    <body>
-        
-    <fieldset>
-        <legend>Registro</legend>
-        <form action="/registro" method="post" enctype="multipart/form-data">
-            <div>
-                <label for="nombre">Nombre(s)</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan" required>
-            </div>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COData - Registrar Reporte</title>
+    
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="registro.css">
+    
+    <!-- Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
 
-            <div>
-                <label for="apellidos">Apellidos</label>
-                <input type="text" id="apellidos" name="apellidos" placeholder="Ej. Pérez López" required>
-            </div>
+    <!-- Contenedor del contenido principal -->
+    <div class="main-content-wrapper">
 
+        <!-- Encabezado del contenido (Igual que en las otras páginas) -->
+        <header class="main-header">
+            <!-- Barra de Búsqueda -->
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <a href="#" class="btn btn-admin">
+                <i class="fa-solid fa-user-shield"></i>
+                Admin
+            </a>
+        </header>
+
+        <!-- Contenido principal de la pantalla -->
+        <main class="main-content">
             
-            <div>
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" placeholder="Ejemplo@gmail.com" required>
+            <h2 class="screen-title">Registrar Nuevo Reporte</h2>
+            
+            <!-- Subtítulo que indica el tipo de reporte seleccionado -->
+            <p class="report-type-info">
+                Reporte de: <strong>Seguridad Pública</strong> 
+                <a href="reporte.html" class="change-type-link">(Cambiar tipo)</a>
+            </p>
+
+            <!-- Formulario para crear el reporte -->
+            <form class="report-form">
+                
+                <!-- Grupo: Título -->
+                <div class="form-group">
+                    <label for="report-title">Título del Reporte</label>
+                    <input type="text" id="report-title" placeholder="Ej: Asalto en Col. Centro">
                 </div>
 
-    </fieldset>
-    </body>
-    </html>
+                <!-- Grupo: Descripción -->
+                <div class="form-group">
+                    <label for="report-description">Descripción</label>
+                    <textarea id="report-description" rows="5" placeholder="Describe detalladamente lo que sucedió..."></textarea>
+                </div>
+
+                <!-- Grupo: Ubicación -->
+                <div class="form-group">
+                    <label for="report-location">Ubicación</label>
+                    <div class="location-group">
+                        <input type="text" id="report-location" placeholder="Av. Principal #123, Col. Centro">
+                        <button type="button" class="btn btn-location">
+                            <i class="fa-solid fa-location-crosshairs"></i>
+                            Usar mi ubicación
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grupo: Botones de Evidencia -->
+                <div class="form-group">
+                    <label>Evidencia (Foto o Video)</label>
+                    <div class="evidence-buttons">
+                        <button type="button" class="btn-evidence">
+                            <i class="fa-solid fa-camera"></i>
+                            Tomar Foto
+                        </button>
+                        <button type="button" class="btn-evidence">
+                            <i class="fa-solid fa-video"></i>
+                            Grabar Video
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grupo: Previsualización de Evidencia (vacío por ahora) -->
+                <div class="evidence-preview" style="display: none;">
+                    <label>Evidencia Adjunta:</label>
+                    <!-- Aquí se podrían añadir dinámicamente las imágenes/videos -->
+                </div>
+
+                <!-- Botón de Enviar -->
+                <button type="submit" class="btn btn-submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Enviar Reporte
+                </button>
+
+            </form>
+            
+
+            <!-- 
+              NAVEGACIÓN RESPONSIVA
+              (Con "Foto/Video" como activo, ya que aquí se registra) 
+            -->
+            <nav class="content-nav">
+                <div class="nav-list">
+                    <a href="reporte.html" class="nav-item">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Principal</span>
+                    </a>
+                    <a href="seguimiento.html" class="nav-item"> 
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Seguimiento</span>
+                    </a>
+                    <a href="registro.html" class="nav-item active"> <!-- "active" está aquí ahora -->
+                        <i class="fa-solid fa-camera"></i>
+                        <span>Foto/Video</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Mapa</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                        <span>Notificaciones</span>
+                    </a>
+                    <a href="#" class="nav-item"> <!-- Debería ir a perfil.html o como lo hayas llamado -->
+                        <i class="fa-solid fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </div>
+            </nav>
+
+        </main>
+    </div> <!-- fin .main-content-wrapper -->
+
+</body>
+</html>
+
