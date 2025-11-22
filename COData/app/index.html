@@ -14,6 +14,22 @@
 
   <header class="app-header">
     <span class="title">COData</span>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COData</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <link rel="stylesheet" href="COData/app/css/styles.css" />
+
+</head>
+<body>
+
+  <header class="app-header">
+    <span class="title">COData</span>
     <span class="admin-tag">Admin</span>
   </header>
 
@@ -21,11 +37,27 @@
     </main>
 
   <nav class="bottom-nav">
+    <a href="#" class="nav-item" onclick="loadView('menuPrincipal')">
+      <i class="fa-solid fa-house"></i>
+      <span>Inicio</span>
+    </a>
+    <a href="#" class="nav-item" onclick="loadView('mapa')">
+      <i class="fa-solid fa-map-location-dot"></i>
+      <span>Mapa</span>
+    </a>
+    <a href="#" class="nav-item" onclick="loadView('reportes')">
+      <i class="fa-solid fa-camera"></i>
+      <span>Reportar</span>
+    </a>
     <a href="#" class="nav-item active" onclick="loadView('seguimiento')">
       <i class="fa-solid fa-list-check"></i>
       <span>Seguimiento</span>
     </a>
-    </nav>
+    <a href="#" class="nav-item" onclick="loadView('perfil')">
+      <i class="fa-solid fa-user"></i>
+      <span>Perfil</span>
+    </a>
+  </nav>
 
   <script src="COData/app/app.js"></script>
 

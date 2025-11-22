@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COData - Mapa de Reportes</title>
-    
+
     <!-- Hoja de estilos -->
     <link rel="stylesheet" href="mapa.css">
-    
+
     <!-- Font Awesome para los íconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
+
 <body>
 
     <!-- Contenedor del contenido principal -->
@@ -31,9 +33,9 @@
 
         <!-- Contenido principal de la pantalla -->
         <main class="main-content">
-            
+
             <h2 class="screen-title">Mapa de Reportes</h2>
-            
+
             <!-- Filtros para el mapa (estilo pill) -->
             <div class="map-filters">
                 <button class="pill active">Todos <span class="count">7</span></button>
@@ -41,71 +43,7 @@
                 <button class="pill filter-transit">Vialidad <span class="count">1</span></button>
                 <button class="pill filter-services">Servicios <span class="count">1</span></button>
                 <button class="pill filter-emergency">Emergencias <span class="count">1</span></button>
-                <button class="pill filter-infra">Infraestructura <span class="count">2</span></button>
-                <button class="pill">Otro <span class="count">1</span></button>
-            </div>
-
-            <!-- Contenedor del Mapa -->
-            <div class="map-container">
-                
-                <!-- Texto de placeholder -->
-                <div class="placeholder-text">
-                    <i class="fa-solid fa-map-marked-alt"></i>
-                    <p>El mapa interactivo se cargaría aquí</p>
-                </div>
-
-                <!-- Marcadores de ejemplo -->
-                <div class="map-marker marker-security" style="top: 30%; left: 40%;" title="Seguridad: Asalto">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div class="map-marker marker-transit" style="top: 50%; left: 60%;" title="Vialidad: Semáforo descompuesto">
-                    <i class="fa-solid fa-car"></i>
-                </div>
-                <div class="map-marker marker-infra" style="top: 65%; left: 25%;" title="Infraestructura: Bache">
-                    <i class="fa-solid fa-wrench"></i>
-                </div>
-                <div class="map-marker marker-services" style="top: 20%; left: 70%;" title="Servicios: Fuga de agua">
-                    <i class="fa-solid fa-recycle"></i>
-                </div>
-
-            </div>
-
-            <!-- 
-              NAVEGACIÓN RESPONSIVA
-              (Con "Mapa" como activo) 
-            -->
-            <nav class="content-nav">
-                <div class="nav-list">
-                    <a href="reporte.html" class="nav-item">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Principal</span>
-                    </a>
-                    <a href="seguimiento.html" class="nav-item"> 
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span>Seguimiento</span>
-                    </a>
-                    <a href="registro.html" class="nav-item">
-                        <i class="fa-solid fa-camera"></i>
-                        <span>Foto/Video</span>
-                    </a>
-                    <a href="mapa.html" class="nav-item active"> <!-- "active" está aquí ahora -->
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <span>Mapa</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                        <span>Notificaciones</span>
-                    </a>
-                    <a href="perfil.html" class="nav-item"> <!-- Asumiendo que la de registro/perfil se llama perfil.html -->
-                        <i class="fa-solid fa-user"></i>
-                        <span>Perfil</span>
-                    </a>
-                </div>
-            </nav>
-
-        </main>
-    </div> <!-- fin .main-content-wrapper -->
 
 </body>
+
 </html>

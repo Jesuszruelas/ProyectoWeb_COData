@@ -6,6 +6,11 @@ registerBtn.addEventListener('click', () => {
   container.classList.add('active');
 });
 
-loginBtn.addEventListener('click', () => {
-  container.classList.remove('active');
+loginBtn.addEventListener('click', (e) => {
+  // Prevent default form submission if it's inside a form
+  e.preventDefault();
+
+  // Simulación de inicio de sesión exitoso
+  // En una app real, aquí validarías las credenciales
+  window.location.href = '../../index.html';
 });

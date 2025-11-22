@@ -31,12 +31,32 @@ function loadView(viewName) {
     .then(html => {
       // 5. Inyecta el HTML traído dentro del <main>
       mainContent.innerHTML = html;
+
+      // 6. Actualiza la navegación activa
+      updateActiveNav(viewName);
     })
     .catch(error => {
       // Si hay un error, lo muestra en la consola y en la página
       console.error('Error al cargar la vista:', error);
       mainContent.innerHTML = `<p style="text-align: center; color: red;">Error: No se pudo cargar el componente ${viewName}.</p>`;
     });
+}
+
+/**
+ * Actualiza la clase 'active' en los elementos de navegación
+ */
+function updateActiveNav(viewName) {
+  const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+  navItems.forEach(item => {
+    // Remove active class from all
+    item.classList.remove('active');
+
+    // Check if the item's onclick attribute contains the viewName
+    const onclickAttr = item.getAttribute('onclick');
+    if (onclickAttr && onclickAttr.includes(`'${viewName}'`)) {
+      item.classList.add('active');
+    }
+  });
 }
 
 /**
@@ -62,6 +82,6 @@ function loadComponentCSS(path) {
 // --- Carga inicial ---
 // Esto se ejecuta cuando el navegador termina de cargar el HTML.
 document.addEventListener('DOMContentLoaded', () => {
-  // Le decimos que cargue la vista 'seguimiento' por defecto
-  loadView('seguimiento');
+  // Le decimos que cargue la vista 'menuPrincipal' por defecto (o seguimiento si prefieres)
+  loadView('menuPrincipal');
 });

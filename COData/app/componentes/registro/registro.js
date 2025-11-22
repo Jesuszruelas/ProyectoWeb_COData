@@ -1,14 +1,14 @@
 // Espera a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // Selecciona el formulario de reporte
     const reportForm = document.querySelector(".report-form");
 
     if (reportForm) {
         reportForm.addEventListener("submit", (event) => {
             // Previene que el formulario se envíe de la forma tradicional
-            event.preventDefault(); 
-            
+            event.preventDefault();
+
             // Aquí iría la lógica para recolectar los datos del formulario
             const title = document.getElementById("report-title").value;
             const description = document.getElementById("report-description").value;
@@ -22,15 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Simulación de envío exitoso
             console.log("Enviando reporte:", { title, description, location });
-            
+
             // Mostrar un mensaje al usuario
             alert("¡Reporte enviado exitosamente!");
 
             // Limpiar el formulario
             reportForm.reset();
-            
+
             // Opcional: Redirigir al usuario a la página de seguimiento
-            // window.location.href = "seguimiento.html";
+            if (typeof loadView === 'function') {
+                loadView('seguimiento');
+            } else {
+                console.warn('loadView no está definida. Redirigiendo manualmente...');
+                // Fallback si loadView no está disponible (aunque debería estarlo en index.html)
+                // window.location.href = "seguimiento.html"; // Esto ya no es válido en SPA
+            }
         });
     }
 
@@ -41,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Simulación de geolocalización
             const locationInput = document.getElementById("report-location");
             locationInput.value = "Ubicación simulada: Calle Falsa 123";
-            
+
             // En una app real, usarías:
             // navigator.geolocation.getCurrentPosition(success, error);
         });
@@ -53,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => {
             const type = button.innerText.includes("Foto") ? "foto" : "video";
             alert(`Simulación: Abriendo cámara para tomar ${type}...`);
-            
+
             // Aquí se podría mostrar la previsualización
             const preview = document.querySelector(".evidence-preview");
             if (preview) {

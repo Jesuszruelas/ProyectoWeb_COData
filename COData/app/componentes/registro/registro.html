@@ -1,16 +1,18 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COData - Registrar Reporte</title>
-    
+
     <!-- Hoja de estilos -->
     <link rel="stylesheet" href="registro.css">
-    
+
     <!-- Font Awesome para los íconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
+
 <body>
 
     <!-- Contenedor del contenido principal -->
@@ -31,18 +33,18 @@
 
         <!-- Contenido principal de la pantalla -->
         <main class="main-content">
-            
+
             <h2 class="screen-title">Registrar Nuevo Reporte</h2>
-            
+
             <!-- Subtítulo que indica el tipo de reporte seleccionado -->
             <p class="report-type-info">
-                Reporte de: <strong>Seguridad Pública</strong> 
-                <a href="reporte.html" class="change-type-link">(Cambiar tipo)</a>
+                Reporte de: <strong>Seguridad Pública</strong>
+                <a href="#" class="change-type-link" onclick="loadView('reportes')">(Cambiar tipo)</a>
             </p>
 
             <!-- Formulario para crear el reporte -->
             <form class="report-form">
-                
+
                 <!-- Grupo: Título -->
                 <div class="form-group">
                     <label for="report-title">Título del Reporte</label>
@@ -52,7 +54,8 @@
                 <!-- Grupo: Descripción -->
                 <div class="form-group">
                     <label for="report-description">Descripción</label>
-                    <textarea id="report-description" rows="5" placeholder="Describe detalladamente lo que sucedió..."></textarea>
+                    <textarea id="report-description" rows="5"
+                        placeholder="Describe detalladamente lo que sucedió..."></textarea>
                 </div>
 
                 <!-- Grupo: Ubicación -->
@@ -95,45 +98,12 @@
                 </button>
 
             </form>
-            
 
-            <!-- 
-              NAVEGACIÓN RESPONSIVA
-              (Con "Foto/Video" como activo, ya que aquí se registra) 
-            -->
-            <nav class="content-nav">
-                <div class="nav-list">
-                    <a href="reporte.html" class="nav-item">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Principal</span>
-                    </a>
-                    <a href="seguimiento.html" class="nav-item"> 
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span>Seguimiento</span>
-                    </a>
-                    <a href="registro.html" class="nav-item active"> <!-- "active" está aquí ahora -->
-                        <i class="fa-solid fa-camera"></i>
-                        <span>Foto/Video</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <span>Mapa</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                        <span>Notificaciones</span>
-                    </a>
-                    <a href="#" class="nav-item"> <!-- Debería ir a perfil.html o como lo hayas llamado -->
-                        <i class="fa-solid fa-user"></i>
-                        <span>Perfil</span>
-                    </a>
-                </div>
-            </nav>
+            <!-- Navigation removed as it is now handled by index.html -->
 
         </main>
     </div> <!-- fin .main-content-wrapper -->
 
 </body>
-</html>
 
+</html>

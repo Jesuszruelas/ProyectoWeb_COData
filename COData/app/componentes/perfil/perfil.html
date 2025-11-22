@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COData - Mi Perfil</title>
-    
+
     <!-- Hoja de estilos -->
     <link rel="stylesheet" href="perfil.css">
-    
+
     <!-- Font Awesome para los íconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
+
 <body>
 
     <!-- Contenedor del contenido principal -->
@@ -31,22 +33,24 @@
 
         <!-- Contenido principal de la pantalla -->
         <main class="main-content">
-            
+
             <h2 class="screen-title">Configuración de Perfil</h2>
-            
+
             <!-- Formulario de Perfil/Registro -->
             <form class="profile-form">
-                
+
                 <!-- Grupo: Imagen de Perfil -->
                 <div class="form-group profile-picture-group">
-                    <img src="https://placehold.co/100x100/e2e2e2/333?text=Perfil" alt="Imagen de Perfil" class="profile-avatar">
+                    <img src="https://placehold.co/100x100/e2e2e2/333?text=Perfil" alt="Imagen de Perfil"
+                        class="profile-avatar">
                     <div class="profile-picture-actions">
                         <label for="avatar-upload">Imagen de Perfil</label>
                         <p>Sube tu foto (JPG, PNG)</p>
                         <!-- Input real oculto -->
                         <input type="file" id="avatar-upload" accept="image/png, image/jpeg" style="display: none;">
                         <!-- Botón falso que activa el input -->
-                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('avatar-upload').click();">
+                        <button type="button" class="btn btn-secondary"
+                            onclick="document.getElementById('avatar-upload').click();">
                             <i class="fa-solid fa-upload"></i>
                             Cambiar Foto
                         </button>
@@ -63,7 +67,7 @@
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
                     <input type="email" id="email" value="correo_ejemplo@uts.edu.mx" disabled>
-                     <small>El correo no se puede cambiar.</small>
+                    <small>El correo no se puede cambiar.</small>
                 </div>
 
                 <!-- Grupo: Contraseña -->
@@ -71,7 +75,7 @@
                     <label for="password">Nueva Contraseña</label>
                     <input type="password" id="password" placeholder="Deja en blanco para no cambiar">
                 </div>
-                
+
                 <!-- Grupo: Confirmar Contraseña -->
                 <div class="form-group">
                     <label for="password-confirm">Confirmar Nueva Contraseña</label>
@@ -91,44 +95,17 @@
                 </div>
 
             </form>
-            
+
 
             <!-- 
               NAVEGACIÓN RESPONSIVA
               (Con "Perfil" como activo) 
             -->
-            <nav class="content-nav">
-                <div class="nav-list">
-                    <a href="#" class="nav-item">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Principal</span>
-                    </a>
-                    <a href="#" class="nav-item"> 
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span>Seguimiento</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fa-solid fa-camera"></i>
-                        <span>Foto/Video</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <span>Mapa</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                        <span>Notificaciones</span>
-                    </a>
-                    <a href="#" class="nav-item active"> <!-- "active" está aquí ahora -->
-                        <i class="fa-solid fa-user"></i>
-                        <span>Perfil</span>
-                    </a>
-                </div>
-            </nav>
+            <!-- Navigation removed as it is now handled by index.html -->
 
         </main>
     </div> <!-- fin .main-content-wrapper -->
 
 </body>
+
 </html>
