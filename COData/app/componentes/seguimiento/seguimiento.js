@@ -1,64 +1,107 @@
-// Espera a que el DOM esté completamente cargado
-document.addEventListener("DOMContentLoaded", () => {
+(async function () {
+    console.log("Seguimiento component loaded");
 
-    // Selecciona todos los íconos de "expandir/colapsar"
-    const toggleIcons = document.querySelectorAll(".report-card-toggle-icon");
+    const container = document.querySelector('.main-content');
+    // Mantener el título y filtros, limpiar las tarjetas viejas
+    // En una implementación más robusta, tendríamos un contenedor específico para la lista
 
-    toggleIcons.forEach(icon => {
-        icon.addEventListener("click", () => {
-            // Encuentra la tarjeta padre del ícono
-            const card = icon.closest(".report-card");
-            
-            // Encuentra los detalles dentro de esa tarjeta
-            const details = card.querySelector(".report-details");
-            const meta = card.querySelector(".report-meta");
-            const badge = card.querySelector(".report-status-badge");
-            const actions = card.querySelector(".report-actions");
+    // Para simplificar, buscaremos las tarjetas existentes y las eliminaremos antes de cargar las nuevas
+    const existingCards = document.querySelectorAll('.report-card');
+    existingCards.forEach(card => card.remove());
 
-            // Si la tarjeta ya está expandida (mostrando detalles), la colapsamos
-            if (card.classList.contains("expanded")) {
-                card.classList.remove("expanded");
-                icon.classList.remove("fa-chevron-up");
-                icon.classList.add("fa-chevron-down");
-                
-                // Oculta los elementos
-                if (details) details.style.display = "none";
-                if (meta) meta.style.display = "none";
-                if (badge) badge.style.display = "none";
-                if (actions) actions.style.display = "none";
+    // Contenedor para inyectar las nuevas tarjetas
+    // Insertamos después del filter-container
+    const filterContainer = document.querySelector('.filter-container');
+    let listContainer = document.getElementById('report-list-container');
 
-            } else {
-                // Si la tarjeta está colapsada, la expandimos
-                card.classList.add("expanded");
-                icon.classList.remove("fa-chevron-down");
-                icon.classList.add("fa-chevron-up");
+    if (!listContainer) {
+        listContainer = document.createElement('div');
+        listContainer.id = 'report-list-container';
+        if (filterContainer) {
+            filterContainer.insertAdjacentElement('afterend', listContainer);
+        } else {
+            container.appendChild(listContainer);
+        }
+    } else {
+        listContainer.innerHTML = ''; // Limpiar si ya existe
+    }
 
-                // Muestra los elementos
-                // Usamos 'flex' o 'block' según corresponda al estilo CSS
-                if (details) details.style.display = "block";
-                if (meta) meta.style.display = "flex";
-                if (badge) badge.style.display = "inline-block";
-                if (actions) actions.style.display = "flex";
+    try {
+        const reports = await window.api.get('/reportes');
+
+        if (reports && reports.length > 0) {
+            // Actualizar contador
+            const countElement = document.querySelector('.filter-container p');
+            if (countElement) countElement.textContent = `${reports.length} reportes encontrados`;
+
+            reports.forEach(report => {
+                const card = createReportCard(report);
+                listContainer.appendChild(card);
+            });
+        } else {
+            listContainer.innerHTML = '<p style="text-align:center; margin-top: 20px;">No hay reportes registrados.</p>';
+        }
+
+    } catch (error) {
+        console.error("Error fetching reports:", error);
+        listContainer.innerHTML = '<p style="text-align:center; color: red;">Error al cargar los reportes.</p>';
+    }
+
+    function createReportCard(report) {
+        const card = document.createElement('div');
+        card.className = `card report-card status-${report.status || 'pending'}`;
+
+        let statusColor = 'warning';
+        let statusText = 'Pendiente';
+
+        if (report.status === 'critical') {
+            statusColor = 'danger';
+            statusText = 'Crítico';
+        } else if (report.status === 'completed') {
+            statusColor = 'success';
+            statusText = 'Completado';
+        }
+
+        card.innerHTML = `
+            <div class="report-card-header">
+                <span class="report-id">RPT-${String(report.id).padStart(3, '0')}</span>
+                <i class="report-status-dot dot-${statusColor}"></i>
+            </div>
+            <h3 class="report-title">${report.title}</h3>
+
+            <div class="report-meta">
+                <span><i class="fa-regular fa-calendar"></i> ${report.date || 'N/A'}</span>
+                <span><i class="fa-regular fa-user"></i> Usuario</span>
+            </div>
+            <span class="report-status-badge">${statusText}</span>
+
+            <div class="report-details">
+                <p><strong>Descripción:</strong> ${report.description || 'Sin descripción'}</p>
+                <p><strong>Ubicación:</strong> ${report.location || 'No especificada'}</p>
+            </div>
+
+            <div class="report-actions">
+                <button class="btn btn-primary" onclick="alert('Actualizar reporte ${report.id}')">Actualizar</button>
+                <button class="btn btn-danger delete-btn" data-id="${report.id}">Eliminar</button>
+            </div>
+        `;
+
+        // Add event listener for delete button
+        const deleteBtn = card.querySelector('.delete-btn');
+        deleteBtn.addEventListener('click', async () => {
+            if (confirm('¿Estás seguro de eliminar este reporte?')) {
+                try {
+                    await window.api.delete(`/reportes/${report.id}`);
+                    card.remove();
+                    alert('Reporte eliminado');
+                } catch (error) {
+                    console.error('Error deleting report:', error);
+                    alert('Error al eliminar');
+                }
             }
         });
-    });
 
-    // Opcional: Colapsar todas las tarjetas que no estén "críticas" al inicio
-    document.querySelectorAll(".report-card").forEach(card => {
-        // Si la tarjeta NO tiene detalles (como las de "En Proceso"), no hagas nada
-        if (!card.querySelector(".report-details")) {
-            // Oculta el ícono si no hay nada que expandir
-            const icon = card.querySelector(".report-card-toggle-icon");
-            if(icon) icon.style.display = "none";
-            return;
-        }
+        return card;
+    }
 
-        // Si la tarjeta SÍ tiene detalles, colápsala por defecto
-        const icon = card.querySelector(".report-card-toggle-icon");
-        if (icon) {
-            // Simula un clic para colapsarla
-            icon.click();
-        }
-    });
-
-});
+})();

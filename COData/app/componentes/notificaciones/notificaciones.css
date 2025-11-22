@@ -1,0 +1,72 @@
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.notification-card {
+    background-color: var(--color-blanco);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    transition: transform 0.2s ease;
+}
+
+.notification-card:hover {
+    transform: translateY(-2px);
+}
+
+.notification-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.icon-info {
+    background-color: var(--color-azul);
+}
+
+.icon-success {
+    background-color: var(--color-verde);
+}
+
+.icon-warning {
+    background-color: var(--color-amarillo);
+}
+
+.icon-danger {
+    background-color: var(--color-rojo);
+}
+
+.notification-content {
+    flex-grow: 1;
+}
+
+.notification-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--color-texto);
+}
+
+.notification-message {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.notification-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.notification-unread {
+    border-left: 4px solid var(--color-azul);
+}

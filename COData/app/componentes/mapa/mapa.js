@@ -1,56 +1,72 @@
-// Espera a que el DOM esté completamente cargado
-document.addEventListener("DOMContentLoaded", () => {
+(async function () {
+    console.log("Mapa component loaded");
 
-    // Selecciona todos los botones de filtro ("pills") del mapa
-    const filterPills = document.querySelectorAll(".pill");
-    
-    // Selecciona todos los marcadores del mapa
-    const mapMarkers = document.querySelectorAll(".map-marker");
+    const mapContainer = document.querySelector('.map-container');
 
-    // Añade un evento de clic a cada botón de filtro
-    filterPills.forEach(pill => {
-        pill.addEventListener("click", () => {
-            
-            // 1. Manejar el estado "active" de los botones
-            filterPills.forEach(p => p.classList.remove("active"));
-            pill.classList.add("active");
+    // Limpiar marcadores estáticos viejos si queremos redibujar
+    // (En este HTML de ejemplo, los marcadores están hardcoded, así que los borramos)
+    const staticMarkers = document.querySelectorAll('.map-marker');
+    staticMarkers.forEach(m => m.remove());
 
-            // 2. Obtener el filtro seleccionado
-            // Lee el texto del botón y lo convierte a minúsculas (ej: "todos", "seguridad")
-            const filter = pill.innerText.split(" ")[0].toLowerCase();
+    try {
+        // Reutilizamos el endpoint de reportes, asumiendo que trae coordenadas
+        const reports = await window.api.get('/reportes');
 
-            // 3. Filtrar los marcadores
-            mapMarkers.forEach(marker => {
-                // Obtiene la clase de categoría del marcador (ej: "marker-security")
-                const markerClass = marker.className.split(" ").find(c => c.startsWith("marker-"));
-                
-                // Limpia el nombre de la clase (ej: "marker-security" -> "security")
-                const markerCategory = markerClass ? markerClass.replace("marker-", "") : null;
+        if (reports && reports.length > 0) {
+            // Actualizar contador en filtro "Todos"
+            const allFilter = document.querySelector('.map-filters .pill.active .count');
+            if (allFilter) allFilter.textContent = reports.length;
 
-                // 4. Mostrar u ocultar marcadores
-                if (filter === "todos" || filter === markerCategory) {
-                    marker.style.display = "flex"; // Muestra el marcador (usamos "flex" por el layout)
-                } else {
-                    marker.style.display = "none"; // Oculta el marcador
+            reports.forEach((report, index) => {
+                // Simular coordenadas dispersas para demo si no vienen en el reporte
+                // En app real, usar report.latitude y report.longitude
+                const top = 20 + (index * 15) % 60;
+                const left = 20 + (index * 25) % 60;
+
+                const marker = document.createElement('div');
+                // Asignar clase según status o categoría
+                let typeClass = 'marker-infra';
+                let iconClass = 'fa-wrench';
+
+                if (report.title.toLowerCase().includes('fuga')) {
+                    typeClass = 'marker-services';
+                    iconClass = 'fa-recycle';
+                } else if (report.title.toLowerCase().includes('seguridad') || report.title.toLowerCase().includes('asalto')) {
+                    typeClass = 'marker-security';
+                    iconClass = 'fa-shield-halved';
                 }
-            });
-        });
-    });
 
-    // Opcional: Simular un clic en "Todos" al cargar la página
-    if (filterPills.length > 0) {
-        filterPills[0].click();
+                marker.className = `map-marker ${typeClass}`;
+                marker.style.top = `${top}%`;
+                marker.style.left = `${left}%`;
+                marker.title = `${report.title}`;
+                marker.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+
+                marker.addEventListener('click', () => {
+                    alert(`Reporte: ${report.title}\nEstado: ${report.status}\nFecha: ${report.date}`);
+                });
+
+                mapContainer.appendChild(marker);
+            });
+        }
+
+    } catch (error) {
+        console.error("Error loading map data:", error);
     }
 
-    // Opcional: Añadir Tooltips a los marcadores (simulado)
-    mapMarkers.forEach(marker => {
-        marker.addEventListener("click", () => {
-            const title = marker.getAttribute("title");
-            if (title) {
-                alert(`Reporte: ${title}`); // Usamos alert como simulación de un popup
-            }
+    // Lógica de filtros (simple visual toggle)
+    const filters = document.querySelectorAll('.map-filters .pill');
+    filters.forEach(filter => {
+        // Clone to remove old listeners
+        const newFilter = filter.cloneNode(true);
+        filter.parentNode.replaceChild(newFilter, filter);
+
+        newFilter.addEventListener('click', () => {
+            document.querySelectorAll('.map-filters .pill').forEach(p => p.classList.remove('active'));
+            newFilter.classList.add('active');
+            // Aquí se implementaría el filtrado real de marcadores
+            console.log("Filtrando por:", newFilter.textContent.trim());
         });
     });
 
-});
-
+})();

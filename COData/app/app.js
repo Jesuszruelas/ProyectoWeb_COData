@@ -12,9 +12,10 @@ function loadView(viewName) {
     return;
   }
 
-  // 2. Define las rutas para HTML y CSS
+  // 2. Define las rutas para HTML, CSS y JS
   const htmlPath = `COData/app/componentes/${viewName}/${viewName}.html`;
   const cssPath = `COData/app/componentes/${viewName}/${viewName}.css`;
+  const jsPath = `COData/app/componentes/${viewName}/${viewName}.js`;
 
   // 3. Llama a la función para cargar el CSS específico
   loadComponentCSS(cssPath);
@@ -34,12 +35,31 @@ function loadView(viewName) {
 
       // 6. Actualiza la navegación activa
       updateActiveNav(viewName);
+
+      // 7. Carga el JS del componente
+      loadComponentJS(jsPath);
     })
     .catch(error => {
       // Si hay un error, lo muestra en la consola y en la página
       console.error('Error al cargar la vista:', error);
       mainContent.innerHTML = `<p style="text-align: center; color: red;">Error: No se pudo cargar el componente ${viewName}.</p>`;
     });
+}
+
+/**
+ * Carga el archivo JS del componente dinámicamente
+ */
+function loadComponentJS(path) {
+  // Remove old script if it exists
+  const oldScript = document.getElementById('component-js');
+  if (oldScript) {
+    oldScript.remove();
+  }
+
+  const script = document.createElement('script');
+  script.src = path;
+  script.id = 'component-js';
+  document.body.appendChild(script);
 }
 
 /**
