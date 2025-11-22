@@ -3,58 +3,35 @@
  * y sus archivos CSS correspondientes.
  */
 function loadView(viewName) {
-  // 1. Busca el contenedor principal en index.html
   const mainContent = document.getElementById('main-content');
+  if (!mainContent) return;
 
-  // Si no lo encuentra, detiene todo para evitar errores
-  if (!mainContent) {
-    console.error("Error: No se encontró el elemento #main-content.");
-    return;
-  }
+  // Rutas relativas a index.html (que está en COData/app/)
+  const htmlPath = `componentes/${viewName}/${viewName}.html`;
+  const cssPath = `componentes/${viewName}/${viewName}.css`;
+  const jsPath = `componentes/${viewName}/${viewName}.js`;
 
-  // 2. Define las rutas para HTML, CSS y JS
-  const htmlPath = `COData/app/componentes/${viewName}/${viewName}.html`;
-  const cssPath = `COData/app/componentes/${viewName}/${viewName}.css`;
-  const jsPath = `COData/app/componentes/${viewName}/${viewName}.js`;
-
-  // 3. Llama a la función para cargar el CSS específico
   loadComponentCSS(cssPath);
 
-  // 4. Carga el HTML del componente
   fetch(htmlPath)
     .then(response => {
-      // Si no encuentra el archivo .html, muestra un error
-      if (!response.ok) {
-        throw new Error(`El archivo ${htmlPath} no se encontró.`);
-      }
+      if (!response.ok) throw new Error(`El archivo ${htmlPath} no se encontró.`);
       return response.text();
     })
     .then(html => {
-      // 5. Inyecta el HTML traído dentro del <main>
       mainContent.innerHTML = html;
-
-      // 6. Actualiza la navegación activa
       updateActiveNav(viewName);
-
-      // 7. Carga el JS del componente
       loadComponentJS(jsPath);
     })
     .catch(error => {
-      // Si hay un error, lo muestra en la consola y en la página
       console.error('Error al cargar la vista:', error);
       mainContent.innerHTML = `<p style="text-align: center; color: red;">Error: No se pudo cargar el componente ${viewName}.</p>`;
     });
 }
 
-/**
- * Carga el archivo JS del componente dinámicamente
- */
 function loadComponentJS(path) {
-  // Remove old script if it exists
   const oldScript = document.getElementById('component-js');
-  if (oldScript) {
-    oldScript.remove();
-  }
+  if (oldScript) oldScript.remove();
 
   const script = document.createElement('script');
   script.src = path;
@@ -62,16 +39,10 @@ function loadComponentJS(path) {
   document.body.appendChild(script);
 }
 
-/**
- * Actualiza la clase 'active' en los elementos de navegación
- */
 function updateActiveNav(viewName) {
   const navItems = document.querySelectorAll('.bottom-nav .nav-item');
   navItems.forEach(item => {
-    // Remove active class from all
     item.classList.remove('active');
-
-    // Check if the item's onclick attribute contains the viewName
     const onclickAttr = item.getAttribute('onclick');
     if (onclickAttr && onclickAttr.includes(`'${viewName}'`)) {
       item.classList.add('active');
@@ -79,29 +50,119 @@ function updateActiveNav(viewName) {
   });
 }
 
-/**
- * Esta función carga la hoja de estilos (CSS) de un componente
- * en el <head> de la página.
- */
 function loadComponentCSS(path) {
-  // 1. Busca si ya tenemos una etiqueta <link> para componentes
   let componentLink = document.getElementById('component-css');
-
-  // 2. Si no existe, la crea por primera vez y la añade al <head>
   if (!componentLink) {
     componentLink = document.createElement('link');
     componentLink.id = 'component-css';
     componentLink.rel = 'stylesheet';
     document.head.appendChild(componentLink);
   }
-
-  // 3. Actualiza el 'href' a la ruta del nuevo archivo CSS
   componentLink.href = path;
 }
 
-// --- Carga inicial ---
-// Esto se ejecuta cuando el navegador termina de cargar el HTML.
+// --- Authentication & Initialization ---
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Le decimos que cargue la vista 'menuPrincipal' por defecto (o seguimiento si prefieres)
-  loadView('menuPrincipal');
+  const authContainer = document.getElementById('auth-container');
+  const appContainer = document.getElementById('app-container');
+  const loginToggle = document.getElementById('login-toggle');
+  const registerToggle = document.getElementById('register-toggle');
+  const container = document.getElementById('container');
+  const logoutBtn = document.getElementById('logout-btn');
+
+  // Check Auth State
+  const token = localStorage.getItem('authToken');
+
+  if (token) {
+    showApp();
+  } else {
+    showLogin();
+  }
+
+  function showApp() {
+    authContainer.classList.add('hidden-view');
+    appContainer.classList.remove('hidden-view');
+    loadView('menuPrincipal');
+  }
+
+  function showLogin() {
+    appContainer.classList.add('hidden-view');
+    authContainer.classList.remove('hidden-view');
+  }
+
+  // Toggle Login/Register Panels
+  if (registerToggle) {
+    registerToggle.addEventListener('click', () => {
+      container.classList.add('active');
+    });
+  }
+
+  if (loginToggle) {
+    loginToggle.addEventListener('click', () => {
+      container.classList.remove('active');
+    });
+  }
+
+  // Handle Login
+  const loginForm = document.getElementById('login-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      try {
+        const response = await window.api.post('/auth/login', { email, password });
+
+        if (response.token) {
+          localStorage.setItem('authToken', response.token);
+          localStorage.setItem('user', JSON.stringify(response.user));
+          // alert(`Bienvenido, ${response.user.name}`);
+          showApp();
+        } else {
+          alert('Error al iniciar sesión: ' + (response.message || 'Credenciales inválidas'));
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Error de conexión');
+      }
+    });
+  }
+
+  // Handle Register
+  const registerForm = document.getElementById('register-form');
+  if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value;
+      const email = document.getElementById('reg-email').value;
+      const password = document.getElementById('reg-password').value;
+
+      try {
+        const response = await window.api.post('/auth/register', { name, email, password });
+
+        if (response.success) {
+          alert('Registro exitoso. Por favor, inicia sesión.');
+          container.classList.remove('active'); // Switch to login view
+        } else {
+          alert('Error al registrarse: ' + response.message);
+        }
+      } catch (error) {
+        console.error('Register error:', error);
+        alert('Error al intentar registrarse');
+      }
+    });
+  }
+
+  // Handle Logout
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      if (confirm("¿Cerrar sesión?")) {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('user');
+        showLogin();
+      }
+    });
+  }
 });
