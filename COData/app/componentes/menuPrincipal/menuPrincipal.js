@@ -35,8 +35,8 @@
             id: 3,
             title: "Infraestructura Urbana",
             description: "Daños en calles, alumbrado, señalización",
-            icon: "fa-road",
-            status: "infrastructure",
+            icon: "fa-wrench",
+            status: "infra",
             category: "Infraestructura"
         },
         {

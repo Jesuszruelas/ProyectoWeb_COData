@@ -110,14 +110,16 @@
                     lat = parsedLat;
                     lng = parsedLng;
                 } else {
-                    // Fallback simulation
-                    lat = 27.4828 + (Math.random() - 0.5) * 0.1;
-                    lng = -109.9304 + (Math.random() - 0.5) * 0.1;
+                    // Fallback: Default center (no random)
+                    console.warn(`Invalid coordinates for report ${report.id}: ${report.location}. Using default center.`);
+                    lat = 27.4828;
+                    lng = -109.9304;
                 }
             } else {
-                // Fallback simulation
-                lat = 27.4828 + (Math.random() - 0.5) * 0.1;
-                lng = -109.9304 + (Math.random() - 0.5) * 0.1;
+                // Fallback: Default center (no random)
+                console.warn(`Missing or invalid location format for report ${report.id}. Using default center.`);
+                lat = 27.4828;
+                lng = -109.9304;
             }
 
             // Determine marker color (Leaflet uses default blue, but we can use circle markers for colors)

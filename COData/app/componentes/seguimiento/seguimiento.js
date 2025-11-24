@@ -122,26 +122,67 @@
 
         // Add event listener for update button
         const updateBtn = card.querySelector('.update-btn');
-        updateBtn.addEventListener('click', async () => {
-            const newStatus = prompt("Nuevo estado (pending, critical, completed):", report.status);
-            if (newStatus && ['pending', 'critical', 'completed'].includes(newStatus)) {
+        updateBtn.addEventListener('click', () => {
+            const modal = document.getElementById('update-modal');
+            const form = document.getElementById('update-form');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const isAdmin = user.email === 'admin@cdata.com';
+
+            // Populate form
+            document.getElementById('update-id').value = report.id;
+            document.getElementById('update-title').value = report.title;
+            document.getElementById('update-description').value = report.description || '';
+            document.getElementById('update-location').value = report.location || '';
+            document.getElementById('update-status').value = report.status;
+
+            // Enable/Disable fields based on role
+            document.getElementById('update-title').disabled = isAdmin;
+            document.getElementById('update-description').disabled = isAdmin;
+            document.getElementById('update-location').disabled = isAdmin;
+            document.getElementById('update-status').disabled = !isAdmin;
+
+            // Show modal
+            modal.style.display = 'flex';
+
+            // Handle close
+            const closeBtn = modal.querySelector('.close-modal');
+            closeBtn.onclick = () => {
+                modal.style.display = 'none';
+            };
+
+            window.onclick = (event) => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+
+            // Handle submit
+            form.onsubmit = async (e) => {
+                e.preventDefault();
+
+                const updatedData = {
+                    ...report,
+                    title: document.getElementById('update-title').value,
+                    description: document.getElementById('update-description').value,
+                    location: document.getElementById('update-location').value,
+                    status: document.getElementById('update-status').value
+                };
+
                 try {
-                    const updatedReport = await window.api.put(`/reportes/${report.id}`, { ...report, status: newStatus });
+                    await window.api.put(`/reportes/${report.id}`, updatedData);
                     alert('Reporte actualizado correctamente');
-                    // Refresh view (simple way)
+                    modal.style.display = 'none';
+
                     if (typeof loadView === 'function') {
                         loadView('seguimiento');
                     } else {
-                        // Or just reload page if loadView is not available globally in this context
                         window.location.reload();
                     }
                 } catch (error) {
                     console.error('Error updating report:', error);
                     alert('Error al actualizar el reporte');
                 }
-            } else if (newStatus) {
-                alert("Estado inválido. Use: pending, critical, o completed");
-            }
+            };
         });
 
         return card;

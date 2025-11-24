@@ -22,7 +22,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -160,7 +160,7 @@ body {
   padding: 0.75rem 1.5rem;
   border-radius: 2rem;
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1), 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
-  z-index: 99;
+  z-index: 2000;
   max-width: 90vw;
 }
 

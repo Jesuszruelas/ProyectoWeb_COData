@@ -216,7 +216,7 @@ body {
 .report-list {
     display: grid;
     /* Rejilla responsive */
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     /* Reducido un poco para mejor ajuste */
     gap: 20px;
 }

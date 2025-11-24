@@ -307,17 +307,17 @@
     background-color: var(--color-azul-principal);
 }
 
-.status-infrastructure {
-    border-left-color: #6366f1;
+.status-infra {
+    border-left-color: #eab308;
 }
 
-.status-infrastructure .card-icon {
-    color: #6366f1;
-    background-color: #e0e7ff;
+.status-infra .card-icon {
+    color: #eab308;
+    background-color: #fef9c3;
 }
 
-.status-infrastructure .btn-select {
-    background-color: #6366f1;
+.status-infra .btn-select {
+    background-color: #eab308;
 }
 
 .status-services {

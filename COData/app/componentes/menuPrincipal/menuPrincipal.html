@@ -42,8 +42,104 @@
             </div>
 
             <!-- Lista de Tipos de Reporte (en Rejilla) - Se llenará dinámicamente -->
+            <!-- Lista de Tipos de Reporte (en Rejilla) -->
             <div class="report-list" id="report-types-container">
-                <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+
+                <!-- Tarjeta: Seguridad Pública -->
+                <div class="report-card status-security">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Seguridad Pública</h3>
+                        <p>Incidentes de seguridad, robos, violencia</p>
+                        <div class="card-evidence">
+                            <i class="fa-solid fa-camera"></i> Foto
+                            <i class="fa-solid fa-video"></i> Video
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                                class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta: Vialidad y Tránsito -->
+                <div class="report-card status-transit">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Vialidad y Tránsito</h3>
+                        <p>Accidentes, infracciones de tránsito, vialidades</p>
+                        <div class="card-evidence">
+                            <i class="fa-solid fa-camera"></i> Foto
+                            <i class="fa-solid fa-video"></i> Video
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                                class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta: Infraestructura Urbana -->
+                <div class="report-card status-infra">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Infraestructura Urbana</h3>
+                        <p>Daños en calles, alumbrado, señalización</p>
+                        <div class="card-evidence">
+                            <i class="fa-solid fa-camera"></i> Foto
+                            <i class="fa-solid fa-video"></i> Video
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                                class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta: Servicios Públicos -->
+                <div class="report-card status-services">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-recycle"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Servicios Públicos</h3>
+                        <p>Agua, electricidad, recolección de basura</p>
+                        <div class="card-evidence">
+                            <i class="fa-solid fa-camera"></i> Foto
+                            <i class="fa-solid fa-video"></i> Video
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                                class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta: Emergencias -->
+                <div class="report-card status-emergency">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Emergencias</h3>
+                        <p>Situaciones que requieren atención inmediata</p>
+                        <div class="card-evidence">
+                            <i class="fa-solid fa-camera"></i> Foto
+                            <i class="fa-solid fa-video"></i> Video
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                                class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
             </div>
 
         </main>
