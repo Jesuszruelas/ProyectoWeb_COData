@@ -33,15 +33,13 @@
                     date: new Date().toISOString()
                 });
 
-                if (response.success) {
-                    alert("¡Reporte enviado exitosamente!");
+                if (response) {
+                    alert("Reporte creado exitosamente.");
                     newForm.reset();
 
                     if (typeof loadView === 'function') {
                         loadView('seguimiento');
                     }
-                } else {
-                    alert("Error al enviar el reporte.");
                 }
             } catch (error) {
                 console.error("Error submitting report:", error);
