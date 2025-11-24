@@ -49,6 +49,46 @@
 
         // Setup filter buttons
         setupFilters();
+
+        // Check if we are in "Location Selection Mode"
+        if (localStorage.getItem('selectingLocation') === 'true') {
+            // Show instruction
+            const instruction = document.createElement('div');
+            instruction.style.position = 'absolute';
+            instruction.style.top = '20px';
+            instruction.style.left = '50%';
+            instruction.style.transform = 'translateX(-50%)';
+            instruction.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            instruction.style.color = 'white';
+            instruction.style.padding = '10px 20px';
+            instruction.style.borderRadius = '20px';
+            instruction.style.zIndex = '1000';
+            instruction.style.fontWeight = 'bold';
+            instruction.innerText = 'Toca el mapa para seleccionar la ubicación';
+            document.getElementById('map').appendChild(instruction);
+
+            // Change cursor
+            document.getElementById('map').style.cursor = 'crosshair';
+
+            // Add click listener for selection
+            window.appMapInstance.on('click', function (e) {
+                const lat = e.latlng.lat.toFixed(6);
+                const lng = e.latlng.lng.toFixed(6);
+
+                if (confirm(`¿Usar esta ubicación?\n${lat}, ${lng}`)) {
+                    localStorage.setItem('selectedLocation', `${lat}, ${lng}`);
+                    localStorage.removeItem('selectingLocation');
+
+                    // Redirect back to registro
+                    if (typeof window.loadView === 'function') {
+                        window.loadView('registro');
+                    } else {
+                        // Fallback if loadView is not global (it should be based on app.js)
+                        console.error("loadView not found");
+                    }
+                }
+            });
+        }
     };
 
     function displayReportsOnMap(reports) {

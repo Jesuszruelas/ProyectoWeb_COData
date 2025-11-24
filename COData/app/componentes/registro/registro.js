@@ -79,6 +79,50 @@
         });
     }
 
+    // Logic for "Seleccionar en Mapa" button
+    const mapSelectBtn = document.querySelector(".btn-map-select");
+    if (mapSelectBtn) {
+        const newMapBtn = mapSelectBtn.cloneNode(true);
+        mapSelectBtn.parentNode.replaceChild(newMapBtn, mapSelectBtn);
+
+        newMapBtn.addEventListener("click", () => {
+            // Save current form state to localStorage so we don't lose it
+            const title = document.getElementById("report-title").value;
+            const description = document.getElementById("report-description").value;
+
+            localStorage.setItem('tempReportData', JSON.stringify({ title, description }));
+            localStorage.setItem('selectingLocation', 'true');
+
+            // Redirect to map
+            if (typeof loadView === 'function') {
+                loadView('mapa');
+            }
+        });
+    }
+
+    // Check if we are returning from map selection
+    const selectedLocation = localStorage.getItem('selectedLocation');
+    if (selectedLocation) {
+        const locationInput = document.getElementById("report-location");
+        if (locationInput) {
+            locationInput.value = selectedLocation;
+        }
+
+        // Restore other form data
+        const tempData = localStorage.getItem('tempReportData');
+        if (tempData) {
+            const { title, description } = JSON.parse(tempData);
+            document.getElementById("report-title").value = title || '';
+            document.getElementById("report-description").value = description || '';
+
+            // Clear temp data
+            localStorage.removeItem('tempReportData');
+        }
+
+        // Clear selection flag
+        localStorage.removeItem('selectedLocation');
+    }
+
     // Lógica para los botones de evidencia
     const evidenceButtons = document.querySelectorAll(".btn-evidence");
     evidenceButtons.forEach(button => {
