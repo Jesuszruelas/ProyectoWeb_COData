@@ -1,148 +1,196 @@
-let map;
-let markers = [];
-let infoWindow;
-
-// Initialize Google Map
-window.initMap = async function () {
-    console.log("Mapa component loaded");
-
-    // Default center (Mexico City)
-    const defaultCenter = { lat: 19.4326, lng: -99.1332 };
-
-    // Create map
-    map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
-        center: defaultCenter,
-        styles: [
-            {
-                featureType: "poi",
-                elementType: "labels",
-                stylers: [{ visibility: "off" }]
-            }
-        ]
-    });
-
-    infoWindow = new google.maps.InfoWindow();
-
-    // Load reports and display on map
-    try {
-        const reports = await window.api.get('/reportes');
-
-        if (reports && reports.length > 0) {
-            displayReportsOnMap(reports);
-            updateFilterCounts(reports);
-        }
-    } catch (error) {
-        console.error("Error loading map data:", error);
+(function () {
+    // Use a global variable to store the map instance so we can clean it up
+    // If it doesn't exist, initialize it
+    if (!window.appMapInstance) {
+        window.appMapInstance = null;
     }
 
-    // Setup filter buttons
-    setupFilters();
-};
+    let markers = [];
 
-function displayReportsOnMap(reports) {
-    // Clear existing markers
-    markers.forEach(marker => marker.setMap(null));
-    markers = [];
+    // Initialize Leaflet Map
+    window.initMap = async function () {
+        console.log("Mapa component loaded (Leaflet)");
 
-    reports.forEach((report, index) => {
-        // Simulate coordinates (in real app, these would come from the report)
-        const lat = 19.4326 + (Math.random() - 0.5) * 0.1;
-        const lng = -99.1332 + (Math.random() - 0.5) * 0.1;
+        // Default center (Ciudad Obregón, Sonora)
+        const defaultCenter = [27.4828, -109.9304];
 
-        const position = { lat, lng };
+        // Create map
+        // Check if map is already initialized
+        if (window.appMapInstance) {
+            window.appMapInstance.remove();
+            window.appMapInstance = null;
+        }
 
-        // Determine marker color based on status
-        let markerColor = '#eab308'; // yellow for pending
-        if (report.status === 'critical') markerColor = '#dc2626'; // red
-        if (report.status === 'completed') markerColor = '#16a34a'; // green
+        // Ensure the map container exists
+        const mapContainer = document.getElementById('map');
+        if (!mapContainer) {
+            console.error("Map container not found");
+            return;
+        }
 
-        // Create custom marker icon
-        const markerIcon = {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 10,
-            fillColor: markerColor,
-            fillOpacity: 0.9,
-            strokeColor: '#ffffff',
-            strokeWeight: 2
-        };
+        window.appMapInstance = L.map('map').setView(defaultCenter, 12);
 
-        const marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: report.title,
-            icon: markerIcon,
-            reportData: report
-        });
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(window.appMapInstance);
 
-        // Add click listener to show info window
-        marker.addListener('click', () => {
+        // Load reports and display on map
+        try {
+            const reports = await window.api.get('/reportes');
+
+            if (reports && reports.length > 0) {
+                displayReportsOnMap(reports);
+                updateFilterCounts(reports);
+            }
+        } catch (error) {
+            console.error("Error loading map data:", error);
+        }
+
+        // Setup filter buttons
+        setupFilters();
+    };
+
+    function displayReportsOnMap(reports) {
+        // Clear existing markers
+        markers.forEach(marker => window.appMapInstance.removeLayer(marker));
+        markers = [];
+
+        reports.forEach((report, index) => {
+            let lat = 27.4828;
+            let lng = -109.9304;
+
+            // Parse location string (expected format: "lat, lng")
+            if (report.location && report.location.includes(',')) {
+                const [latStr, lngStr] = report.location.split(',');
+                const parsedLat = parseFloat(latStr.trim());
+                const parsedLng = parseFloat(lngStr.trim());
+
+                if (!isNaN(parsedLat) && !isNaN(parsedLng)) {
+                    lat = parsedLat;
+                    lng = parsedLng;
+                } else {
+                    // Fallback simulation
+                    lat = 27.4828 + (Math.random() - 0.5) * 0.1;
+                    lng = -109.9304 + (Math.random() - 0.5) * 0.1;
+                }
+            } else {
+                // Fallback simulation
+                lat = 27.4828 + (Math.random() - 0.5) * 0.1;
+                lng = -109.9304 + (Math.random() - 0.5) * 0.1;
+            }
+
+            // Determine marker color (Leaflet uses default blue, but we can use circle markers for colors)
+            let color = '#eab308'; // yellow
+            if (report.status === 'critical') color = '#dc2626'; // red
+            if (report.status === 'completed') color = '#16a34a'; // green
+
+            const marker = L.circleMarker([lat, lng], {
+                radius: 10,
+                fillColor: color,
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(window.appMapInstance);
+
+            // Add popup
             const content = `
-                <div style="padding: 10px; max-width: 250px;">
-                    <h3 style="margin: 0 0 10px 0; color: #333; font-size: 1.1rem;">${report.title}</h3>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9rem;"><strong>Estado:</strong> ${getStatusText(report.status)}</p>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9rem;"><strong>Fecha:</strong> ${report.date}</p>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9rem;"><strong>Descripción:</strong> ${report.description || 'Sin descripción'}</p>
+                <div style="padding: 5px; max-width: 200px;">
+                    <h3 style="margin: 0 0 5px 0; color: #333; font-size: 1rem;">${report.title}</h3>
+                    <p style="margin: 3px 0; color: #666; font-size: 0.8rem;"><strong>Estado:</strong> ${getStatusText(report.status)}</p>
+                    <p style="margin: 3px 0; color: #666; font-size: 0.8rem;"><strong>Fecha:</strong> ${report.date}</p>
+                    <p style="margin: 3px 0; color: #666; font-size: 0.8rem;">${report.description || 'Sin descripción'}</p>
                 </div>
             `;
-            infoWindow.setContent(content);
-            infoWindow.open(map, marker);
+
+            marker.bindPopup(content);
+
+            // Store report data for filtering
+            marker.reportData = report;
+            markers.push(marker);
         });
 
-        markers.push(marker);
-    });
-
-    // Adjust map bounds to show all markers
-    if (markers.length > 0) {
-        const bounds = new google.maps.LatLngBounds();
-        markers.forEach(marker => bounds.extend(marker.getPosition()));
-        map.fitBounds(bounds);
-    }
-}
-
-function getStatusText(status) {
-    const statusMap = {
-        'critical': 'Crítico',
-        'pending': 'Pendiente',
-        'completed': 'Completado'
-    };
-    return statusMap[status] || 'Desconocido';
-}
-
-function updateFilterCounts(reports) {
-    document.getElementById('count-all').textContent = reports.length;
-
-    // You can add logic to count by category if your reports have categories
-    // For now, showing all in each category
-    document.getElementById('count-infra').textContent = reports.filter(r => r.title.toLowerCase().includes('bache') || r.title.toLowerCase().includes('luminaria')).length;
-    document.getElementById('count-services').textContent = reports.filter(r => r.title.toLowerCase().includes('agua') || r.title.toLowerCase().includes('basura')).length;
-    document.getElementById('count-security').textContent = reports.filter(r => r.title.toLowerCase().includes('seguridad')).length;
-}
-
-function setupFilters() {
-    const filterButtons = document.querySelectorAll('.map-filters .pill');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            button.classList.add('active');
-
-            const filter = button.getAttribute('data-filter');
-            filterMarkers(filter);
-        });
-    });
-}
-
-function filterMarkers(filter) {
-    markers.forEach(marker => {
-        if (filter === 'all') {
-            marker.setVisible(true);
-        } else {
-            // Implement filtering logic based on report category
-            // For now, show all markers
-            marker.setVisible(true);
+        // Adjust map bounds to show all markers
+        if (markers.length > 0) {
+            const group = new L.featureGroup(markers);
+            window.appMapInstance.fitBounds(group.getBounds());
         }
-    });
-}
+    }
+
+    function getStatusText(status) {
+        const statusMap = {
+            'critical': 'Crítico',
+            'pending': 'Pendiente',
+            'completed': 'Completado'
+        };
+        return statusMap[status] || 'Desconocido';
+    }
+
+    function updateFilterCounts(reports) {
+        const countAll = document.getElementById('count-all');
+        if (countAll) countAll.textContent = reports.length;
+
+        const countInfra = document.getElementById('count-infra');
+        if (countInfra) countInfra.textContent = reports.filter(r => r.title.toLowerCase().includes('bache') || r.title.toLowerCase().includes('luminaria')).length;
+
+        const countServices = document.getElementById('count-services');
+        if (countServices) countServices.textContent = reports.filter(r => r.title.toLowerCase().includes('agua') || r.title.toLowerCase().includes('basura')).length;
+
+        const countSecurity = document.getElementById('count-security');
+        if (countSecurity) countSecurity.textContent = reports.filter(r => r.title.toLowerCase().includes('seguridad')).length;
+    }
+
+    function setupFilters() {
+        const filterButtons = document.querySelectorAll('.map-filters .pill');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+                filterMarkers(filter);
+            });
+        });
+    }
+
+    function filterMarkers(filter) {
+        markers.forEach(marker => {
+            if (filter === 'all') {
+                if (!window.appMapInstance.hasLayer(marker)) {
+                    marker.addTo(window.appMapInstance);
+                }
+            } else {
+                // Simple filtering logic based on title keywords (matching updateFilterCounts)
+                const report = marker.reportData;
+                let category = 'other';
+
+                if (report.title.toLowerCase().includes('bache') || report.title.toLowerCase().includes('luminaria')) {
+                    category = 'infra';
+                } else if (report.title.toLowerCase().includes('agua') || report.title.toLowerCase().includes('basura')) {
+                    category = 'services';
+                } else if (report.title.toLowerCase().includes('seguridad')) {
+                    category = 'security';
+                }
+
+                if (filter === category) {
+                    if (!window.appMapInstance.hasLayer(marker)) {
+                        marker.addTo(window.appMapInstance);
+                    }
+                } else {
+                    if (window.appMapInstance.hasLayer(marker)) {
+                        window.appMapInstance.removeLayer(marker);
+                    }
+                }
+            }
+        });
+    }
+
+    // Call initMap directly since we are not using Google Maps callback anymore
+    if (document.getElementById('map')) {
+        window.initMap();
+    }
+})();

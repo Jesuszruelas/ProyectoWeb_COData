@@ -90,7 +90,7 @@
             </div>
 
             <div class="report-actions">
-                <button class="btn btn-update" onclick="alert('Actualizar reporte ${report.id}')">
+                <button class="btn btn-update update-btn" data-id="${report.id}">
                     <i class="fa-solid fa-pen"></i> Actualizar
                 </button>
                 <button class="btn btn-delete delete-btn" data-id="${report.id}">
@@ -117,6 +117,30 @@
                     console.error('Error deleting report:', error);
                     alert('Error al eliminar el reporte');
                 }
+            }
+        });
+
+        // Add event listener for update button
+        const updateBtn = card.querySelector('.update-btn');
+        updateBtn.addEventListener('click', async () => {
+            const newStatus = prompt("Nuevo estado (pending, critical, completed):", report.status);
+            if (newStatus && ['pending', 'critical', 'completed'].includes(newStatus)) {
+                try {
+                    const updatedReport = await window.api.put(`/reportes/${report.id}`, { ...report, status: newStatus });
+                    alert('Reporte actualizado correctamente');
+                    // Refresh view (simple way)
+                    if (typeof loadView === 'function') {
+                        loadView('seguimiento');
+                    } else {
+                        // Or just reload page if loadView is not available globally in this context
+                        window.location.reload();
+                    }
+                } catch (error) {
+                    console.error('Error updating report:', error);
+                    alert('Error al actualizar el reporte');
+                }
+            } else if (newStatus) {
+                alert("Estado inválido. Use: pending, critical, o completed");
             }
         });
 

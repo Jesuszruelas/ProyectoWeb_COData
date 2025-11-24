@@ -57,6 +57,32 @@ class ApiService {
     delete(endpoint) {
         return this.request(endpoint, 'DELETE');
     }
+
+    async uploadProfilePicture(file) {
+        const formData = new FormData();
+        formData.append('avatar', file);
+
+        const token = localStorage.getItem('authToken');
+        const options = {
+            method: 'POST',
+            headers: {
+                'Authorization': token ? `Bearer ${token}` : ''
+            },
+            body: formData
+        };
+
+        try {
+            const response = await fetch(`${this.baseUrl}/auth/profile/image`, options);
+            const responseData = await response.json();
+            if (!response.ok) {
+                throw new Error(responseData.message || responseData.error || `API Error: ${response.statusText}`);
+            }
+            return responseData;
+        } catch (error) {
+            console.error('Upload Failed:', error);
+            throw error;
+        }
+    }
 }
 
 const api = new ApiService();

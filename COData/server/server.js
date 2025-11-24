@@ -17,6 +17,7 @@ app.use('/api/reportes', reportRoutes);
 // Serve static files from the 'app' directory
 const path = require('path');
 app.use(express.static(path.join(__dirname, '../app')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Handle SPA routing (optional, but good practice if we had client-side routing)
 app.get('*', (req, res) => {
@@ -24,8 +25,35 @@ app.get('*', (req, res) => {
 });
 
 // Sync database and start server
-sequelize.sync().then(() => {
+sequelize.sync({ alter: true }).then(async () => {
     console.log('Database synced');
+
+    // Seed default users
+    const User = require('./models/User');
+    try {
+        const admin = await User.findOne({ where: { email: 'admin@cdata.com' } });
+        if (!admin) {
+            await User.create({
+                name: 'Admin',
+                email: 'admin@cdata.com',
+                password: 'admin123'
+            });
+            console.log('Default admin created');
+        }
+
+        const user = await User.findOne({ where: { email: 'usuario@cdata.com' } });
+        if (!user) {
+            await User.create({
+                name: 'Usuario Demo',
+                email: 'usuario@cdata.com',
+                password: 'user123'
+            });
+            console.log('Default user created');
+        }
+    } catch (error) {
+        console.error('Seeding error:', error);
+    }
+
     app.listen(PORT, () => {
         console.log(`Server running on http://localhost:${PORT}`);
     });
