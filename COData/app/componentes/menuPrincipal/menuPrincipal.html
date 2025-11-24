@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<body>
+
+    <!-- Contenedor del contenido principal -->
+    <div class="main-content-wrapper">
+
+        <!-- Encabezado del contenido -->
+        <header class="main-header">
+            <!-- Barra de Búsqueda -->
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar tipo de reporte...">
+            </div>
+            <a href="#" class="btn btn-admin" id="menu-admin-btn">
+                <i class="fa-solid fa-user-shield"></i>
+                <span id="menu-role-text">User</span>
+            </a>
+        </header>
+
+        <!-- Contenido principal de la pantalla -->
+        <main class="main-content">
+            <h2 class="screen-title">Tipos de Reportes</h2>
+
+            <p class="evidence-notice">
+                <i class="fa-solid fa-camera"></i>
+                <i class="fa-solid fa-video"></i>
+                <strong>Evidencia requerida</strong>
+            </p>
+            <p class="screen-subtitle">Selecciona el tipo de reporte con evidencia foto/video</p>
+
+            <!-- Filtros tipo "Pill" -->
+            <div class="filter-pills">
+                <button class="pill active">Todos <span class="count">7</span></button>
+                <button class="pill">Seguridad <span class="count">1</span></button>
+                <button class="pill">Vialidad <span class="count">1</span></button>
+                <button class="pill">Servicios <span class="count">1</span></button>
+                <button class="pill">Emergencias <span class="count">1</span></button>
+                <button class="pill">Infraestructura <span class="count">2</span></button>
+                <button class="pill">Otro <span class="count">1</span></button>
+            </div>
+
+            <!-- Lista de Tipos de Reporte (en Rejilla) - Se llenará dinámicamente -->
+            <div class="report-list" id="report-types-container">
+                <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

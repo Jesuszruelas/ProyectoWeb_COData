@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* --- Paleta de Colores UNIFICADA (de reporte.css) --- */
+:root {
+    /* Paleta de Mockup */
+    --color-azul-principal: #3b82f6;
+    --color-azul-secundario: #2563eb;
+    --color-verde: #16a34a;
+    --color-amarillo: #eab308;
+    --color-rojo: #dc2626;
+    --color-bg-light: #f3f4f6;
+    --color-text: #4b5563;
+    --color-text-light: #6b7280;
+    --color-blanco: #ffffff;
+    --color-borde: #e5e7eb;
+
+    /* Colores de Login/Branding */
+    --color-brand-primary: #960e53;
+    --color-brand-secondary: #b94645;
+    --color-brand-header: #8a154a;
+
+    /* Sombras de Login */
+    --shadow-main: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Estilos Globales --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    /* Fondo degradado de login.css */
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    color: var(--color-text);
+    min-height: 100vh;
+}
+
+/* --- Contenedor de Contenido (Igual que en reporte.html) --- */
+.main-content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 30px;
+}
+
+/* --- Encabezado de Contenido (Igual que en reporte.html) --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 16px 24px;
+    background-color: var(--color-blanco);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 24px;
+}
+
+.search-bar {
+    position: relative;
+    flex: 1 1 300px;
+    min-width: 250px;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-light);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    font-size: 0.9rem;
+    border: none;
+    background-color: var(--color-bg-light);
+    border-radius: 8px;
+    outline: none;
+    color: var(--color-text);
+}
+
+.search-bar input:focus {
+    background-color: var(--color-blanco);
+    box-shadow: 0 0 0 2px var(--color-azul-principal);
+}
+
+.search-bar input::placeholder {
+    color: var(--color-text-light);
+}
+
+/* --- Botones (Estilo base + variantes) --- */
+.btn {
+    background-color: var(--color-brand-primary);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 25px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    background-color: var(--color-brand-secondary);
+}
+
+.btn.btn-admin {
+    background-color: var(--color-verde);
+    flex-shrink: 0;
+}
+
+.btn.btn-admin:hover {
+    background-color: #148a40;
+}
+
+/* Variantes de botones para la página de Seguimiento */
+.btn.btn-primary {
+    background-color: var(--color-brand-primary);
+    /* Rosa/Morado */
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--color-brand-secondary);
+}
+
+.btn.btn-secondary {
+    background-color: var(--color-text-light);
+    /* Gris */
+}
+
+.filter-container p {
+    color: var(--color-text-light);
+    font-size: 1rem;
+}
+
+/* --- Grid Layout for Report Cards --- */
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* --- Estilos de Tarjeta de Reporte (Seguimiento) --- */
+.card {
+    background-color: var(--color-blanco);
+    border-radius: 10px;
+    /* Sombra más sutil de reporte.css */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--color-borde);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.report-card {
+    padding: 24px;
+    position: relative;
+    border-left: 6px solid var(--color-borde);
+    /* Borde de estatus por defecto */
+}
+
+/* Colores de borde por estatus (Usando la nueva paleta) */
+.report-card.status-critical {
+    border-left-color: var(--color-rojo);
+}
+
+.report-card.status-pending {
+    border-left-color: var(--color-amarillo);
+}
+
+.report-card.status-completed {
+    border-left-color: var(--color-verde);
+}
+
+.report-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.report-id {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-light);
+}
+
+.report-status-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.dot-danger {
+    background-color: var(--color-rojo);
+}
+
+.dot-warning {
+    background-color: var(--color-amarillo);
+}
+
+.dot-success {
+    background-color: var(--color-verde);
+}
+
+.report-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.report-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-bottom: 15px;
+}
+
+.report-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.report-status-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.badge-danger {
+    background-color: #fee2e2;
+    color: var(--color-rojo);
+    border: 1px solid #fecaca;
+}
+
+.badge-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+.badge-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.report-details {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--color-borde);
+}
+
+.report-details p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 10px 0;
+    color: var(--color-text-light);
+}
+
+.report-details p strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.report-details p i.fa-location-dot {
+    color: var(--color-brand-primary);
+    /* Mantenemos el color de marca para la ubicación */
+    margin-right: 4px;
+}
+
+.report-actions {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-borde);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn-update {
+    background-color: var(--color-brand-primary);
+    flex: 1;
+}
+
+.btn-update:hover {
+    background-color: var(--color-brand-secondary);
+}
+
+.btn-delete {
+    background-color: var(--color-rojo);
+    flex: 1;
+}
+
+.btn-delete:hover {
+    background-color: #b91c1c;
+}
+
+.report-card-toggle-icon {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.report-card-toggle-icon:hover {
+    color: var(--color-brand-primary);
+}
+
+
+/* --- NAVEGACIÓN ESTÁTICA RESPONSIVA (Igual que en reporte.html) --- */
+.content-nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: var(--color-blanco);
+    border-top: 1px solid var(--color-borde);
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 120px;
+    min-width: 100px;
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    position: relative;
+    border-radius: 8px;
+    padding: 10px 5px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.nav-item i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.nav-item:hover {
+    color: var(--color-azul-principal);
+    background-color: var(--color-bg-light);
+}
+
+.nav-item.active {
+    color: var(--color-azul-principal);
+    font-weight: 600;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

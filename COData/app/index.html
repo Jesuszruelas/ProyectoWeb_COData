@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COData</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="componentes/menuPrincipal/logoCoData.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Login Styles -->
+  <link rel="stylesheet" href="componentes/login/login.css" />
+
+  <style>
+    /* Helper classes to toggle views */
+    .hidden-view {
+      display: none !important;
+    }
+
+    /* Ensure login container is centered when visible */
+    #auth-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100%;
+      background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    }
+
+    /* App container should take full height */
+    #app-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Authentication View (Login/Register) -->
+  <div id="auth-container">
+    <!-- Logo Above Container -->
+    <div class="auth-branding">
+      <img src="componentes/menuPrincipal/logoCoData.png" alt="COData Logo" class="auth-logo">
+    </div>
+
+    <div class="container" id="container">
+      <!-- Sign Up Form -->
+      <div class="form-container sign-up">
+        <form id="register-form">
+          <h1>Crear cuenta</h1>
+          <div class="social-icons">
+            <a href="#" class="icon google"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="icon facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="icon whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+          <span>O utiliza tu correo electrónico para registrarte</span>
+          <input type="text" placeholder="Nombre" id="reg-name" required>
+          <input type="email" placeholder="Correo" id="reg-email" required>
+          <input type="password" placeholder="Contraseña" id="reg-password" required>
+          <button type="submit">Registrarse</button>
+        </form>
+      </div>
+
+      <!-- Sign In Form -->
+      <div class="form-container sign-in">
+        <form id="login-form">
+          <h1>Iniciar sesión</h1>
+          <div class="social-icons">
+            <a href="#" class="icon google"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="icon facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="icon whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+          <span>O utiliza tu correo electrónico y contraseña </span>
+          <input type="email" placeholder="Correo" id="login-email" required>
+          <input type="password" placeholder="Contraseña" id="login-password" required>
+          <a href="#">¿Olvidaste tu contraseña?</a>
+          <button type="submit">Iniciar sesión</button>
+        </form>
+      </div>
+
+      <!-- Toggle Panels -->
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>¡Bienvenido de nuevo!</h1>
+            <p>Para mantenerse conectado con nosotros, inicie sesión.</p>
+            <button class="hidden" id="login-toggle">Iniciar sesión</button>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Hola amig@</h1>
+            <p>Introduce tus datos </p>
+            <button class="hidden" id="register-toggle">Registrarte</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application View -->
+  <div id="app-container" class="hidden-view">
+    <header class="app-header">
+      <span class="title">COData</span>
+      <span class="admin-tag">Admin</span>
+      <button id="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Salir</span>
+      </button>
+    </header>
+
+    <main id="main-content">
+    </main>
+
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item" onclick="loadView('menuPrincipal')">
+        <i class="fa-solid fa-house"></i>
+        <span>Inicio</span>
+      </a>
+      <a href="#" class="nav-item" onclick="loadView('mapa')">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <span>Mapa</span>
+      </a>
+      <a href="#" class="nav-item" onclick="loadView('reportes')">
+        <i class="fa-solid fa-camera"></i>
+        <span>Reportar</span>
+      </a>
+      <a href="#" class="nav-item active" onclick="loadView('seguimiento')">
+        <i class="fa-solid fa-list-check"></i>
+        <span>Seguimiento</span>
+      </a>
+      <a href="#" class="nav-item" onclick="loadView('notificaciones')">
+        <i class="fa-solid fa-bell"></i>
+        <span>Notificaciones</span>
+      </a>
+      <a href="#" class="nav-item" onclick="loadView('perfil')">
+        <i class="fa-solid fa-user"></i>
+        <span>Perfil</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Scripts -->
+  <script src="services/api.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
