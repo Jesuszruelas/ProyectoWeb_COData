@@ -11,6 +11,7 @@
   --color-grey-light: #e5e7eb;
   --color-header-dark: #8a2a43;
   --color-infrastructure: #6366f1;
+  --color-bg-card: rgba(255, 255, 255, 0.85);
 }
 
 /* Global Styles with Responsive Units */
@@ -37,7 +38,7 @@ body {
 
 /* Main Content Area - YouTube-style margins (24px on desktop) */
 #main-content {
-  background-color: var(--color-white);
+  background-color: var(--color-bg-card);
   min-height: 100vh;
   padding: 1.5rem;
   padding-bottom: 9rem;
@@ -233,7 +234,7 @@ body {
 }
 
 .card {
-  background-color: var(--color-white);
+  background-color: var(--color-bg-card);
   border-radius: 0.75rem;
   padding: 1rem;
   margin-bottom: 1rem;

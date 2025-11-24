@@ -13,11 +13,12 @@
     --color-text-light: #6b7280;
     --color-blanco: #ffffff;
     --color-borde: #e5e7eb;
+    --color-bg-card: rgba(255, 255, 255, 0.85);
 
     /* Colores de Login/Branding */
     --color-brand-primary: #960e53;
     --color-brand-secondary: #b94645;
-    --color-brand-header: #8a154a; 
+    --color-brand-header: #8a154a;
 
     /* Sombras de Login */
     --shadow-main: 0 5px 15px rgba(0, 0, 0, 0.35);
@@ -50,18 +51,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; 
-    gap: 15px; 
+    flex-wrap: wrap;
+    gap: 15px;
     padding: 16px 24px;
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     margin-bottom: 24px;
 }
 
 .search-bar {
     position: relative;
-    flex: 1 1 300px; 
+    flex: 1 1 300px;
     min-width: 250px;
 }
 
@@ -83,8 +84,9 @@ body {
     outline: none;
     color: var(--color-text);
 }
+
 .search-bar input:focus {
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     box-shadow: 0 0 0 2px var(--color-azul-principal);
 }
 
@@ -117,8 +119,9 @@ body {
 
 .btn.btn-admin {
     background-color: var(--color-verde);
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
+
 .btn.btn-admin:hover {
     background-color: #148a40;
 }
@@ -141,16 +144,19 @@ body {
     color: var(--color-text-light);
     margin-bottom: 24px;
 }
+
 .report-type-info strong {
     color: var(--color-azul-principal);
     font-weight: 600;
 }
+
 .change-type-link {
     font-size: 0.9rem;
     color: var(--color-brand-primary);
     text-decoration: none;
     margin-left: 10px;
 }
+
 .change-type-link:hover {
     text-decoration: underline;
 }
@@ -158,13 +164,15 @@ body {
 
 /* --- Formulario de Nuevo Reporte --- */
 .report-form {
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     padding: 24px 30px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--color-borde);
-    max-width: 900px; /* Ancho máximo para el formulario */
-    margin: 0 auto; /* Centrar el formulario */
+    max-width: 900px;
+    /* Ancho máximo para el formulario */
+    margin: 0 auto;
+    /* Centrar el formulario */
 }
 
 .form-group {
@@ -194,7 +202,7 @@ body {
 
 .form-group input[type="text"]:focus,
 .form-group textarea:focus {
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     border-color: var(--color-azul-principal);
     box-shadow: 0 0 0 2px var(--color-azul-principal);
     outline: none;
@@ -208,20 +216,27 @@ body {
 /* Grupo de Ubicación */
 .location-group {
     display: flex;
-    flex-wrap: wrap; /* Responsivo */
+    flex-wrap: wrap;
+    /* Responsivo */
     gap: 10px;
 }
+
 .location-group input {
-    flex: 1 1 400px; /* Crece y se encoge */
+    flex: 1 1 400px;
+    /* Crece y se encoge */
 }
+
 .btn-location {
     background-color: var(--color-text-light);
     padding: 12px 20px;
     font-size: 0.9rem;
-    text-transform: none; /* Quitamos mayúsculas */
+    text-transform: none;
+    /* Quitamos mayúsculas */
     font-weight: 500;
-    flex-shrink: 0; /* Evita que se encoja */
+    flex-shrink: 0;
+    /* Evita que se encoja */
 }
+
 .btn-location:hover {
     background-color: var(--color-text);
 }
@@ -235,7 +250,7 @@ body {
 }
 
 .btn-evidence {
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     border: 2px dashed var(--color-azul-principal);
     color: var(--color-azul-principal);
     padding: 30px;
@@ -246,10 +261,13 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .btn-evidence:hover {
-    background-color: #f0f6ff; /* Azul muy claro */
+    background-color: #f0f6ff;
+    /* Azul muy claro */
     border-style: solid;
 }
+
 .btn-evidence i {
     display: block;
     font-size: 2rem;
@@ -265,6 +283,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
 }
+
 .btn-submit:hover {
     background-color: var(--color-brand-secondary);
 }
@@ -273,40 +292,40 @@ body {
 /* --- NAVEGACIÓN ESTÁTICA RESPONSIVA (Igual que en reporte.html) --- */
 .content-nav {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     padding: 10px 20px;
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     border-top: 1px solid var(--color-borde);
     border-bottom: 1px solid var(--color-borde);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
-    margin-top: 40px; 
+    margin-top: 40px;
 }
 
 .nav-list {
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: space-around; 
-    gap: 10px; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
     width: 100%;
-    max-width: 900px; 
+    max-width: 900px;
 }
 
 .nav-item {
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    flex: 1 1 120px; 
-    min-width: 100px; 
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 120px;
+    min-width: 100px;
     text-decoration: none;
     color: var(--color-text-light);
-    font-size: 0.85rem; 
+    font-size: 0.85rem;
     font-weight: 500;
     position: relative;
     border-radius: 8px;
-    padding: 10px 5px; 
+    padding: 10px 5px;
     transition: all 0.3s ease;
-    text-align: center; 
+    text-align: center;
 }
 
 .nav-item i {
@@ -327,7 +346,7 @@ body {
 .notification-badge {
     position: absolute;
     top: 5px;
-    right: 15px; 
+    right: 15px;
     background-color: var(--color-rojo);
     color: var(--color-blanco);
     font-size: 0.7rem;
@@ -339,4 +358,3 @@ body {
     align-items: center;
     justify-content: center;
 }
-

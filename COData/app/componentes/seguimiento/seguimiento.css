@@ -13,6 +13,7 @@
     --color-text-light: #6b7280;
     --color-blanco: #ffffff;
     --color-borde: #e5e7eb;
+    --color-bg-card: rgba(255, 255, 255, 0.85);
 
     /* Colores de Login/Branding */
     --color-brand-primary: #960e53;
@@ -53,7 +54,7 @@ body {
     flex-wrap: wrap;
     gap: 15px;
     padding: 16px 24px;
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     margin-bottom: 24px;
@@ -85,7 +86,7 @@ body {
 }
 
 .search-bar input:focus {
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     box-shadow: 0 0 0 2px var(--color-azul-principal);
 }
 
@@ -155,7 +156,7 @@ body {
 
 /* --- Estilos de Tarjeta de Reporte (Seguimiento) --- */
 .card {
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     border-radius: 10px;
     /* Sombra más sutil de reporte.css */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -340,7 +341,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 10px 20px;
-    background-color: var(--color-blanco);
+    background-color: var(--color-bg-card);
     border-top: 1px solid var(--color-borde);
     border-bottom: 1px solid var(--color-borde);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
