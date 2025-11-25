@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COData - Reporte</title>
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="reportes.css">
+
+    <!-- Font Awesome para los íconos (usado en los mockups) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+    <!-- Contenedor del contenido principal (Ahora es el contenedor raíz) -->
+    <div class="main-content-wrapper">
+
+        <!-- Encabezado del contenido -->
+
+        <p class="evidence-notice">
+            <i class="fa-solid fa-camera"></i>
+            <i class="fa-solid fa-video"></i>
+            <strong>Evidencia requerida</strong>
+        </p>
+        <p class="screen-subtitle">Selecciona el tipo de reporte con evidencia foto/video</p>
+
+        <!-- Filtros tipo "Pill" -->
+        <div class="filter-pills">
+            <button class="pill active">Todos <span class="count">7</span></button>
+            <button class="pill">Seguridad <span class="count">1</span></button>
+            <button class="pill">Vialidad <span class="count">1</span></button>
+            <button class="pill">Servicios <span class="count">1</span></button>
+            <button class="pill">Emergencias <span class="count">1</span></button>
+            <button class="pill">Infraestructura <span class="count">2</span></button>
+            <button class="pill">Otro <span class="count">1</span></button>
+        </div>
+
+        <!-- Lista de Tipos de Reporte (en Rejilla) -->
+        <div class="report-list">
+
+            <!-- Tarjeta: Seguridad Pública -->
+            <div class="report-card status-security">
+                <div class="card-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Seguridad Pública</h3>
+                    <p>Incidentes de seguridad, robos, violencia</p>
+                    <div class="card-evidence">
+                        <i class="fa-solid fa-camera"></i> Foto
+                        <i class="fa-solid fa-video"></i> Video
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                            class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Tarjeta: Vialidad y Tránsito -->
+            <div class="report-card status-transit">
+                <div class="card-icon">
+                    <i class="fa-solid fa-car"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Vialidad y Tránsito</h3>
+                    <p>Accidentes, infracciones de tránsito, vialidades</p>
+                    <div class="card-evidence">
+                        <i class="fa-solid fa-camera"></i> Foto
+                        <i class="fa-solid fa-video"></i> Video
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                            class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Tarjeta: Infraestructura Urbana -->
+            <div class="report-card status-infra">
+                <div class="card-icon">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Infraestructura Urbana</h3>
+                    <p>Daños en calles, alumbrado, señalización</p>
+                    <div class="card-evidence">
+                        <i class="fa-solid fa-camera"></i> Foto
+                        <i class="fa-solid fa-video"></i> Video
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                            class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Tarjeta: Servicios Públicos -->
+            <div class="report-card status-services">
+                <div class="card-icon">
+                    <i class="fa-solid fa-recycle"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Servicios Públicos</h3>
+                    <p>Agua, electricidad, recolección de basura</p>
+                    <div class="card-evidence">
+                        <i class="fa-solid fa-camera"></i> Foto
+                        <i class="fa-solid fa-video"></i> Video
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                            class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Tarjeta: Emergencias -->
+            <div class="report-card status-emergency">
+                <div class="card-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Emergencias</h3>
+                    <p>Situaciones que requieren atención inmediata</p>
+                    <div class="card-evidence">
+                        <i class="fa-solid fa-camera"></i> Foto
+                        <i class="fa-solid fa-video"></i> Video
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-select" onclick="loadView('registro')">Seleccionar <i
+                            class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div> <!-- Fin de .report-list -->
+
+        <!-- 
+              AQUÍ ES DONDE ESTÁ LA NAVEGACIÓN AHORA
+              (Debajo de la lista de reportes, con Flexbox responsivo) 
+            -->
+        <!-- Navigation removed as it is now handled by index.html -->
+
+        </main>
+    </div> <!-- fin .main-content-wrapper -->
+
+</body>

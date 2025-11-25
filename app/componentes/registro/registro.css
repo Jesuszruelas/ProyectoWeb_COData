@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* --- Paleta de Colores UNIFICADA --- */
+:root {
+    /* Paleta de Mockup */
+    --color-azul-principal: #3b82f6;
+    --color-azul-secundario: #2563eb;
+    --color-verde: #16a34a;
+    --color-amarillo: #eab308;
+    --color-rojo: #dc2626;
+    --color-bg-light: #f3f4f6;
+    --color-text: #4b5563;
+    --color-text-light: #6b7280;
+    --color-blanco: #ffffff;
+    --color-borde: #e5e7eb;
+    --color-bg-card: rgba(255, 255, 255, 0.85);
+
+    /* Colores de Login/Branding */
+    --color-brand-primary: #960e53;
+    --color-brand-secondary: #b94645;
+    --color-brand-header: #8a154a;
+
+    /* Sombras de Login */
+    --shadow-main: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Estilos Globales --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    /* Fondo degradado de login.css */
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    color: var(--color-text);
+    min-height: 100vh;
+}
+
+/* --- Contenedor de Contenido (Igual que en reporte.html) --- */
+.main-content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 30px;
+}
+
+/* --- Encabezado de Contenido (Igual que en reporte.html) --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 16px 24px;
+    background-color: var(--color-bg-card);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 24px;
+}
+
+.search-bar {
+    position: relative;
+    flex: 1 1 300px;
+    min-width: 250px;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-light);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    font-size: 0.9rem;
+    border: none;
+    background-color: var(--color-bg-light);
+    border-radius: 8px;
+    outline: none;
+    color: var(--color-text);
+}
+
+.search-bar input:focus {
+    background-color: var(--color-bg-card);
+    box-shadow: 0 0 0 2px var(--color-azul-principal);
+}
+
+.search-bar input::placeholder {
+    color: var(--color-text-light);
+}
+
+/* --- Botones (Estilo base + variantes) --- */
+.btn {
+    background-color: var(--color-brand-primary);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 25px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    background-color: var(--color-brand-secondary);
+}
+
+.btn.btn-admin {
+    background-color: var(--color-verde);
+    flex-shrink: 0;
+}
+
+.btn.btn-admin:hover {
+    background-color: #148a40;
+}
+
+
+/* --- Contenido Principal --- */
+.main-content {
+    /* Contenido principal */
+}
+
+.screen-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.report-type-info {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 24px;
+}
+
+.report-type-info strong {
+    color: var(--color-azul-principal);
+    font-weight: 600;
+}
+
+.change-type-link {
+    font-size: 0.9rem;
+    color: var(--color-brand-primary);
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.change-type-link:hover {
+    text-decoration: underline;
+}
+
+
+/* --- Formulario de Nuevo Reporte --- */
+.report-form {
+    background-color: var(--color-bg-card);
+    padding: 24px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--color-borde);
+    max-width: 900px;
+    /* Ancho máximo para el formulario */
+    margin: 0 auto;
+    /* Centrar el formulario */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    background-color: var(--color-bg-light);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-text);
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-azul-principal);
+    box-shadow: 0 0 0 2px var(--color-azul-principal);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Grupo de Ubicación */
+.location-group {
+    display: flex;
+    flex-wrap: wrap;
+    /* Responsivo */
+    gap: 10px;
+}
+
+.location-group input {
+    flex: 1 1 400px;
+    /* Crece y se encoge */
+}
+
+.btn-location {
+    background-color: var(--color-text-light);
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    text-transform: none;
+    /* Quitamos mayúsculas */
+    font-weight: 500;
+    flex-shrink: 0;
+    /* Evita que se encoja */
+}
+
+.btn-location:hover {
+    background-color: var(--color-text);
+}
+
+/* Botones de Evidencia */
+.evidence-buttons {
+    display: grid;
+    /* 2 columnas en escritorio, 1 en móvil */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.btn-evidence {
+    background-color: var(--color-bg-card);
+    border: 2px dashed var(--color-azul-principal);
+    color: var(--color-azul-principal);
+    padding: 30px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-evidence:hover {
+    background-color: #f0f6ff;
+    /* Azul muy claro */
+    border-style: solid;
+}
+
+.btn-evidence i {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Botón de Enviar Reporte */
+.btn-submit {
+    background-color: var(--color-brand-primary);
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btn-submit:hover {
+    background-color: var(--color-brand-secondary);
+}
+
+
+/* --- NAVEGACIÓN ESTÁTICA RESPONSIVA (Igual que en reporte.html) --- */
+.content-nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: var(--color-bg-card);
+    border-top: 1px solid var(--color-borde);
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 120px;
+    min-width: 100px;
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    position: relative;
+    border-radius: 8px;
+    padding: 10px 5px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.nav-item i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.nav-item:hover {
+    color: var(--color-azul-principal);
+    background-color: var(--color-bg-light);
+}
+
+.nav-item.active {
+    color: var(--color-azul-principal);
+    font-weight: 600;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
