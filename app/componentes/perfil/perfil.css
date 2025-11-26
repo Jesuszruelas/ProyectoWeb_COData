@@ -169,22 +169,396 @@ body {
 }
 
 /* --- Formulario de Perfil --- */
-.profile-form {
-    background-color: var(--color-bg-card);
-    padding: 24px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
     border: 1px solid var(--color-borde);
-    max-width: 800px;
-    /* Limita el ancho del formulario */
-    margin: 0 auto;
-    /* Centra el formulario */
+    border-radius: 8px;
+    background-color: var(--color-bg-light);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-text);
+    transition: all 0.3s ease;
 }
 
-.form-group {
-    margin-bottom: 20px;
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-azul-principal);
+    box-shadow: 0 0 0 2px var(--color-azul-principal);
+    outline: none;
 }
 
+.form-group input[disabled] {
+    background-color: var(--color-borde);
+    color: var(--color-text-light);
+    cursor: not-allowed;
+}
+
+.form-group small {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    margin-top: 5px;
+    display: block;
+}
+
+/* Grupo de Imagen de Perfil */
+.profile-picture-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    /* Para responsivo */
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-borde);
+}
+
+.profile-picture-actions {
+    flex: 1;
+}
+
+.profile-picture-actions p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-bottom: 10px;
+}
+
+
+/* Acciones del Formulario */
+.form-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-borde);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+    /* Botones en extremos opuestos */
+    align-items: center;
+}
+
+
+/* --- NAVEGACIÓN ESTÁTICA RESPONSIVA (Igual que en reporte.html) --- */
+.content-nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: var(--color-bg-card);
+    border-top: 1px solid var(--color-borde);
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 120px;
+    min-width: 100px;
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    position: relative;
+    border-radius: 8px;
+    padding: 10px 5px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.nav-item i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.nav-item:hover {
+    color: var(--color-azul-principal);
+    background-color: var(--color-bg-light);
+}
+
+.nav-item.active {
+    color: var(--color-azul-principal);
+    font-weight: 600;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Variantes de botones para el formulario */
+.btn.btn-secondary {
+    background-color: var(--color-text-light);
+    text-transform: none;
+    font-weight: 500;
+}
+
+.btn.btn-secondary:hover {
+    background-color: var(--color-text);
+}
+
+.btn.btn-danger {
+    background-color: var(--color-rojo);
+}
+
+.btn.btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+.btn.btn-submit {
+    background-color: var(--color-brand-primary);
+    padding: 12px 30px;
+    font-size: 1rem;
+}
+
+.btn.btn-submit:hover {
+    background-color: var(--color-brand-secondary);
+}
+
+
+/* --- Contenido Principal --- */
+.main-content {
+    /* Contenido principal */
+}
+
+.screen-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 24px;
+}
+
+/* --- Formulario de Perfil --- */
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    background-color: var(--color-bg-light);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-text);
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-azul-principal);
+    box-shadow: 0 0 0 2px var(--color-azul-principal);
+    outline: none;
+}
+
+.form-group input[disabled] {
+    background-color: var(--color-borde);
+    color: var(--color-text-light);
+    cursor: not-allowed;
+}
+
+.form-group small {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    margin-top: 5px;
+    display: block;
+}
+
+/* Grupo de Imagen de Perfil */
+.profile-picture-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    /* Para responsivo */
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-borde);
+}
+
+.profile-picture-actions {
+    flex: 1;
+}
+
+.profile-picture-actions p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-bottom: 10px;
+}
+
+
+/* Acciones del Formulario */
+.form-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-borde);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+    /* Botones en extremos opuestos */
+    align-items: center;
+}
+
+
+/* --- NAVEGACIÓN ESTÁTICA RESPONSIVA (Igual que en reporte.html) --- */
+.content-nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: var(--color-bg-card);
+    border-top: 1px solid var(--color-borde);
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 120px;
+    min-width: 100px;
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    position: relative;
+    border-radius: 8px;
+    padding: 10px 5px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.nav-item i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.nav-item:hover {
+    color: var(--color-azul-principal);
+    background-color: var(--color-bg-light);
+}
+
+.nav-item.active {
+    color: var(--color-azul-principal);
+    font-weight: 600;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Variantes de botones para el formulario */
+.btn.btn-secondary {
+    background-color: var(--color-text-light);
+    text-transform: none;
+    font-weight: 500;
+}
+
+.btn.btn-secondary:hover {
+    background-color: var(--color-text);
+}
+
+.btn.btn-danger {
+    background-color: var(--color-rojo);
+}
+
+.btn.btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+.btn.btn-submit {
+    background-color: var(--color-brand-primary);
+    padding: 12px 30px;
+    font-size: 1rem;
+}
+
+.btn.btn-submit:hover {
+    background-color: var(--color-brand-secondary);
+}
+
+
+/* --- Contenido Principal --- */
+.main-content {
+    /* Contenido principal */
+}
+
+.screen-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 24px;
+}
+
+/* --- Formulario de Perfil --- */
 .form-group label {
     display: block;
     font-size: 0.9rem;
