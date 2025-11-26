@@ -32,6 +32,13 @@
         } else {
             profileAvatar.src = getDefaultAvatar(user.name || 'User');
         }
+
+        const roleBadge = document.getElementById('user-role-badge');
+        if (roleBadge) {
+            // Capitalize first letter
+            const roleName = user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'User';
+            roleBadge.innerHTML = `<i class="fa-solid fa-user-shield"></i> ${roleName}`;
+        }
     }
 
     // Handle file selection

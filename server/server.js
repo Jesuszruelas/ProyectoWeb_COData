@@ -38,7 +38,8 @@ sequelize.sync({ alter: true }).then(async () => {
             await User.create({
                 name: 'Admin',
                 email: 'admin@cdata.com',
-                password: 'admin123'
+                password: 'admin123',
+                role: 'admin'
             });
             console.log('Default admin created');
         }

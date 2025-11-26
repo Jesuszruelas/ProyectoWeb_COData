@@ -55,7 +55,8 @@ router.post('/login', async (req, res) => {
                 id: user.id,
                 name: user.name,
                 email: user.email,
-                profilePicture: user.profilePicture
+                profilePicture: user.profilePicture,
+                role: user.role
             }
         });
     } catch (error) {
@@ -109,7 +110,8 @@ router.put('/profile', async (req, res) => {
                 id: user.id,
                 name: user.name,
                 email: user.email,
-                profilePicture: user.profilePicture
+                profilePicture: user.profilePicture,
+                role: user.role
             }
         });
     } catch (error) {
