@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COData - Seguimiento</title>
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="seguimiento.css">
+
+    <!-- Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+    <!-- Contenedor del contenido principal -->
+    <div class="main-content-wrapper">
+
+        <!-- Encabezado del contenido -->
+        <!-- Contenido específico de Seguimiento -->
+        <h2 class="screen-title">Seguimiento de Reportes</h2>
+
+        <div class="filter-container">
+            <p>0 reportes encontrados</p>
+        </div>
+
+        <!-- Contenedor para las tarjetas - Se llenará dinámicamente -->
+        <div class="reports-grid" id="reports-cards-container">
+            <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+        </div>
+
+        <!-- Modal de Actualización -->
+        <div id="update-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Actualizar Reporte</h3>
+                <form id="update-form">
+                    <input type="hidden" id="update-id">
+
+                    <div class="form-group">
+                        <label for="update-title">Título</label>
+                        <input type="text" id="update-title" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="update-description">Descripción</label>
+                        <textarea id="update-description" class="form-input" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="update-location">Ubicación</label>
+                        <input type="text" id="update-location" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="update-status">Estado (Solo Admin)</label>
+                        <select id="update-status" class="form-input">
+                            <option value="pending">Pendiente</option>
+                            <option value="critical">Crítico</option>
+                            <option value="completed">Completado</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

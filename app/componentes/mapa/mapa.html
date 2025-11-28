@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COData - Mapa</title>
+    <link rel="stylesheet" href="mapa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="map-filters">
+        <button class="pill active" data-filter="all">
+            <i class="fa-solid fa-layer-group"></i>
+            Todos <span class="count" id="count-all">0</span>
+        </button>
+        <button class="pill" data-filter="infra">
+            <i class="fa-solid fa-wrench"></i>
+            Infraestructura <span class="count" id="count-infra">0</span>
+        </button>
+        <button class="pill" data-filter="services">
+            <i class="fa-solid fa-recycle"></i>
+            Servicios <span class="count" id="count-services">0</span>
+        </button>
+        <button class="pill" data-filter="security">
+            <i class="fa-solid fa-shield-halved"></i>
+            Seguridad <span class="count" id="count-security">0</span>
+        </button>
+    </div>
+
+    <!-- Google Maps Container -->
+    <div id="map" class="map-container"></div>
+    </main>
+    </div>
+
+</body>
+
+</html>
